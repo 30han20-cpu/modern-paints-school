@@ -622,16 +622,16 @@
                                     <p id="error-phone" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
                                 </div>
 
-                                <!-- Email Address -->
+                                <!-- ID GLC Field -->
                                 <div class="sm:col-span-2">
-                                    <label for="email" class="block text-sm font-bold text-slate-200 mb-2">
-                                        البريد الإلكتروني <span class="text-rose-400">*</span>
+                                    <label for="glcId" class="block text-sm font-bold text-slate-200 mb-2">
+                                        ID GLC <span class="text-rose-400">*</span>
                                     </label>
                                     <div class="relative">
-                                        <input type="email" id="email" required placeholder="example@domain.com" class="w-full bg-navy-950/90 border border-white/15 rounded-xl pr-11 pl-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors" dir="ltr">
-                                        <i class="fa-solid fa-envelope absolute right-4 top-1/2 -translate-y-1/2 text-gold-400"></i>
+                                        <input type="text" id="glcId" required placeholder="أدخل رقم كود ID GLC الخاص بك" class="w-full bg-navy-950/90 border border-white/15 rounded-xl pr-11 pl-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors tracking-wider" dir="ltr">
+                                        <i class="fa-solid fa-id-badge absolute right-4 top-1/2 -translate-y-1/2 text-gold-400"></i>
                                     </div>
-                                    <p id="error-email" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
+                                    <p id="error-glcId" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
                                 </div>
                             </div>
 
@@ -707,8 +707,8 @@
                                         <span id="ticket-phone" class="font-bold text-white tracking-wider" dir="ltr"></span>
                                     </div>
                                     <div class="flex justify-between items-center">
-                                        <span class="text-slate-400 text-xs">البريد الإلكتروني:</span>
-                                        <span id="ticket-email" class="font-semibold text-slate-300 text-xs" dir="ltr"></span>
+                                        <span class="text-slate-400 text-xs">ID GLC:</span>
+                                        <span id="ticket-glcId" class="font-bold text-gold-300 tracking-wider" dir="ltr"></span>
                                     </div>
                                 </div>
                             </div>
@@ -812,7 +812,7 @@
                                 <th class="p-3.5 border-b border-white/10">الاسم الرباعي</th>
                                 <th class="p-3.5 border-b border-white/10">الرقم القومي</th>
                                 <th class="p-3.5 border-b border-white/10">رقم الهاتف</th>
-                                <th class="p-3.5 border-b border-white/10">البريد الإلكتروني</th>
+                                <th class="p-3.5 border-b border-white/10">ID GLC</th>
                                 <th class="p-3.5 border-b border-white/10">تاريخ التسجيل</th>
                                 <th class="p-3.5 border-b border-white/10 text-center">إجراء</th>
                             </tr>
@@ -1087,7 +1087,7 @@
             const fullName = document.getElementById('fullName').value.trim();
             const nationalId = document.getElementById('nationalId').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
+            const glcId = document.getElementById('glcId').value.trim();
 
             let isValid = true;
 
@@ -1116,12 +1116,12 @@
                 setFieldError('phone', '');
             }
 
-            // Validate Email
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                setFieldError('email', 'يرجى إدخال بريد إلكتروني صحيح.');
+            // Validate ID GLC
+            if (!glcId || glcId.length < 2) {
+                setFieldError('glcId', 'يرجى إدخال كود ID GLC الخاص بك.');
                 isValid = false;
             } else {
-                setFieldError('email', '');
+                setFieldError('glcId', '');
             }
 
             if (!isValid) return;
@@ -1137,7 +1137,7 @@
                 fullName,
                 nationalId,
                 phone,
-                email,
+                glcId,
                 registeredAt
             };
 
@@ -1150,7 +1150,7 @@
             document.getElementById('ticket-name').textContent = fullName;
             document.getElementById('ticket-nid').textContent = nationalId;
             document.getElementById('ticket-phone').textContent = phone;
-            document.getElementById('ticket-email').textContent = email;
+            document.getElementById('ticket-glcId').textContent = glcId;
 
             // Prepare Manual Mailto Fallback Link
             const mailSubject = encodeURIComponent(`تسجيل إفطار رمضان 2027 - ${fullName} (${ticketId})`);
@@ -1160,7 +1160,7 @@
                 `الاسم الرباعي: ${fullName}\n` +
                 `الرقم القومي: ${nationalId}\n` +
                 `رقم الهاتف: ${phone}\n` +
-                `البريد الإلكتروني: ${email}\n` +
+                `ID GLC: ${glcId}\n` +
                 `تاريخ التسجيل: ${registeredAt}`
             );
             document.getElementById('manual-mailto-btn').href = `mailto:${ADMIN_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
@@ -1176,7 +1176,8 @@
                 `التذكرة: ${ticketId}`,
                 `الاسم: ${fullName}`,
                 `الرقم القومي: ${nationalId}`,
-                `الهاتف: ${phone}`
+                `الهاتف: ${phone}`,
+                `ID GLC: ${glcId}`
             ].join('\n');
 
             try {
@@ -1213,7 +1214,7 @@
                         "الاسم_الرباعي": record.fullName,
                         "الرقم_القومي": record.nationalId,
                         "رقم_الهاتف": record.phone,
-                        "البريد_الإلكتروني": record.email,
+                        "ID_GLC": record.glcId,
                         "تاريخ_التسجيل": record.registeredAt,
                         "الجهة": "مدرسة الدهانات والديكورات الحديثة - GLC Paints & MP Define"
                     })
@@ -1279,6 +1280,7 @@
                 r.fullName.toLowerCase().includes(searchQuery) ||
                 r.nationalId.includes(searchQuery) ||
                 r.phone.includes(searchQuery) ||
+                (r.glcId || r.email || '').toLowerCase().includes(searchQuery) ||
                 r.ticketId.toLowerCase().includes(searchQuery)
             );
 
@@ -1296,6 +1298,7 @@
             }
 
             filtered.forEach((rec, index) => {
+                const displayGlcId = rec.glcId || rec.email || '-';
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-white/5 transition-colors';
                 tr.innerHTML = `
@@ -1304,7 +1307,7 @@
                     <td class="p-3.5 font-bold text-white">${rec.fullName}</td>
                     <td class="p-3.5 font-mono text-gold-400" dir="ltr">${rec.nationalId}</td>
                     <td class="p-3.5 font-mono text-white" dir="ltr">${rec.phone}</td>
-                    <td class="p-3.5 text-slate-300" dir="ltr">${rec.email}</td>
+                    <td class="p-3.5 font-mono text-gold-300" dir="ltr">${displayGlcId}</td>
                     <td class="p-3.5 text-xs text-slate-400">${rec.registeredAt}</td>
                     <td class="p-3.5 text-center">
                         <button onclick="deleteRegistrant('${rec.ticketId}')" class="text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors" title="حذف السجل">
@@ -1330,14 +1333,14 @@
                 return;
             }
 
-            const headers = ['م', 'رقم التذكرة', 'الاسم الرباعي', 'الرقم القومي', 'رقم الهاتف', 'البريد الإلكتروني', 'تاريخ التسجيل'];
+            const headers = ['م', 'رقم التذكرة', 'الاسم الرباعي', 'الرقم القومي', 'رقم الهاتف', 'ID GLC', 'تاريخ التسجيل'];
             const rows = records.map((r, i) => [
                 i + 1,
                 r.ticketId,
                 `"${r.fullName.replace(/"/g, '""')}"`,
                 `"\t${r.nationalId}"`,
                 `"\t${r.phone}"`,
-                r.email,
+                `"\t${r.glcId || r.email || ''}"`,
                 `"${r.registeredAt}"`
             ]);
 
@@ -1359,7 +1362,7 @@
             }
 
             const lines = records.map((r, i) =>
-                `${i + 1}) ${r.fullName} | قومي: ${r.nationalId} | هاتف: ${r.phone} | تذكرة: ${r.ticketId}`
+                `${i + 1}) ${r.fullName} | قومي: ${r.nationalId} | هاتف: ${r.phone} | ID GLC: ${r.glcId || r.email || '-'} | تذكرة: ${r.ticketId}`
             ).join('\n');
 
             const subject = encodeURIComponent(`كشف المسجلين في الإفطار الرمضاني 2027 (${records.length} مسجل)`);
