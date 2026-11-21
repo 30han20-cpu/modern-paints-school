@@ -191,7 +191,6 @@
     <main>
         <!-- 1. Hero Section -->
         <section id="home" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 hero-pattern border-b border-white/10 overflow-hidden">
-            <!-- Decorative Color Swatches Floating Elements -->
             <div class="absolute top-28 left-8 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute bottom-12 right-12 w-48 h-48 bg-glc-blue/15 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -203,11 +202,11 @@
                         <span class="text-xs sm:text-sm text-slate-300">برعاية رسمية من شركة</span>
                         <span class="font-extrabold text-sm sm:text-base tracking-wide text-white bg-gradient-to-l from-glc-red to-glc-blue px-2.5 py-0.5 rounded-lg">GLC Paints</span>
                     </div>
-                <!-- Notice about Formspree Integration -->
-                <div class="mt-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3.5 text-xs text-emerald-200 flex items-start gap-2.5">
-                    <i class="fa-solid fa-circle-check text-emerald-400 text-base mt-0.5"></i>
-                    <div>
-                        <strong>الربط السحابي مفعل:</strong> جميع التسجيلات يتم إرسالها تلقائياً ومباشرة إلى حسابك على <strong>Formspree</strong> (<span class="underline font-bold" dir="ltr">formspree.io/f/mnpdgaye</span>) وبريدك الإلكتروني <span class="underline font-bold" dir="ltr">30han20@gmail.com</span>.
+
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-navy-800/90 border border-gold-500/30 shadow-lg">
+                        <i class="fa-solid fa-bullhorn text-gold-400 text-xs"></i>
+                        <span class="text-xs sm:text-sm text-slate-300">الوكيل الإعلاني شركة</span>
+                        <span class="font-extrabold text-sm sm:text-base tracking-wide text-gold-400">MP Define</span>
                     </div>
                 </div>
 
@@ -303,7 +302,6 @@
 
                 <!-- Tab Content 1: Paint Types -->
                 <div id="content-types" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Card 1 -->
                     <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-droplet"></i>
@@ -318,7 +316,6 @@
                         </div>
                     </div>
 
-                    <!-- Card 2 -->
                     <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-brush"></i>
@@ -333,7 +330,6 @@
                         </div>
                     </div>
 
-                    <!-- Card 3 -->
                     <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-shield-halved"></i>
@@ -348,7 +344,6 @@
                         </div>
                     </div>
 
-                    <!-- Card 4 -->
                     <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-red-700 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-tree"></i>
@@ -654,11 +649,11 @@
                             <span>تم تسجيلك بنجاح في الإفطار الرمضاني 2027! احتفظ ببطاقة الدعوة أدناه.</span>
                         </div>
 
-                        <!-- Email Dispatch Status Banner -->
+                        <!-- Formspree Dispatch Status Banner -->
                         <div id="email-status-banner" class="bg-blue-500/15 border border-blue-500/30 text-blue-200 px-4 py-3 rounded-2xl text-xs sm:text-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 no-print">
                             <div class="flex items-center gap-2.5">
                                 <i id="email-status-icon" class="fa-solid fa-spinner fa-spin text-gold-400 text-base"></i>
-                                <span id="email-status-text">جاري إرسال بيانات التسجيل تلقائياً إلى بريد الإدارة (30han20@gmail.com)...</span>
+                                <span id="email-status-text">جاري إرسال بيانات التسجيل تلقائياً إلى لوحة الإدارة...</span>
                             </div>
                             <a id="manual-mailto-btn" href="#" class="shrink-0 px-3 py-1.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-gold-400 border border-gold-500/30 font-bold text-xs transition-colors flex items-center gap-1.5">
                                 <i class="fa-solid fa-paper-plane"></i>
@@ -761,7 +756,7 @@
                 <div class="mb-4 text-right">
                     <label class="block text-xs font-bold text-slate-300 mb-1.5">رمز مرور الإدارة (الرمز الافتراضي: <span class="text-gold-400 font-black">2027</span>)</label>
                     <input type="password" id="admin-passcode-input" onkeyup="if(event.key==='Enter') verifyAdminPasscode()" placeholder="أدخل رمز المرور (2027)" class="w-full bg-navy-950 border border-white/15 rounded-xl px-4 py-3 text-white text-center font-bold tracking-widest focus:outline-none focus:border-gold-400">
-                    <p id="admin-login-error" class="hidden text-xs text-rose-400 mt-1.5 font-bold text-center">رمز المرور غير صحيح! الرمز الافتراضي هو 151020</p>
+                    <p id="admin-login-error" class="hidden text-xs text-rose-400 mt-1.5 font-bold text-center">رمز المرور غير صحيح! الرمز الافتراضي هو 2027</p>
                 </div>
 
                 <button onclick="verifyAdminPasscode()" class="w-full gold-gradient-bg text-navy-950 font-black py-3.5 rounded-xl shadow-gold hover:brightness-110 transition-all">
@@ -776,7 +771,7 @@
                         <span class="text-xs font-bold text-gold-400">إدارة مدرسة الدهانات والديكورات الحديثة</span>
                         <h3 class="text-xl sm:text-2xl font-black text-white mt-1">كشف المسجلين في الإفطار الرمضاني 2027</h3>
                         <p class="text-xs text-slate-400 mt-1">
-                            البريد المستلم للإشعارات: <span class="text-emerald-400 font-bold" dir="ltr">30han20@gmail.com</span> • إجمالي المسجلين: <span id="admin-total-count" class="text-gold-400 font-black text-sm">0</span>
+                            الربط السحابي: <span class="text-emerald-400 font-bold" dir="ltr">Formspree (mnpdgaye)</span> • إجمالي المسجلين محلياً: <span id="admin-total-count" class="text-gold-400 font-black text-sm">0</span>
                         </p>
                     </div>
 
@@ -793,11 +788,11 @@
                     </div>
                 </div>
 
-                <!-- Notice about FormSubmit activation -->
-                <div class="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-3.5 text-xs text-amber-200 flex items-start gap-2.5">
-                    <i class="fa-solid fa-circle-info text-amber-400 text-base mt-0.5"></i>
+                <!-- Notice about Formspree Integration -->
+                <div class="mt-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3.5 text-xs text-emerald-200 flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-check text-emerald-400 text-base mt-0.5"></i>
                     <div>
-                        <strong>تنبيه هام للإدارة:</strong> عند وصول أول رسالة تسجيل على بريدك <span class="underline font-bold" dir="ltr">30han20@gmail.com</span> من خدمة FormSubmit، يرجى الضغط على زر <strong>Activate Form</strong> داخل الرسالة لتفعيل استقبال جميع التسجيلات تلقائياً في المستقبل.
+                        <strong>الربط السحابي مفعل بنجاح:</strong> يتم إرسال كل تسجيل جديد فوراً إلى حسابك على <strong>Formspree</strong> (<span class="underline font-bold" dir="ltr">formspree.io/f/mnpdgaye</span>) وإلى بريدك الإلكتروني المرتبط به.
                     </div>
                 </div>
 
@@ -954,7 +949,6 @@
             emptyState.classList.add('hidden');
 
             list.forEach((member) => {
-                // Find original index (1 to 45)
                 const originalIndex = managementMembers.indexOf(member) + 1;
                 const isEnglish = /^[A-Za-z\s]+$/.test(member);
 
@@ -988,17 +982,13 @@
 
         // 3. Encyclopedia Tabs Logic
         function switchTab(tabName) {
-            // Hide all contents
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            // Reset all tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('gold-gradient-bg', 'text-navy-950', 'shadow-gold');
                 btn.classList.add('glass-card', 'text-slate-300');
             });
 
-            // Show selected content
             document.getElementById(`content-${tabName}`).classList.remove('hidden');
-            // Highlight active button
             const activeBtn = document.getElementById(`tab-${tabName}`);
             activeBtn.classList.remove('glass-card', 'text-slate-300');
             activeBtn.classList.add('gold-gradient-bg', 'text-navy-950', 'shadow-gold');
@@ -1015,7 +1005,6 @@
                 return;
             }
 
-            // Two coats calculation
             const litersNeeded = Math.ceil((area * 2) / coverage);
             const buckets10L = Math.floor(litersNeeded / 10);
             const remainingLiters = litersNeeded % 10;
@@ -1035,7 +1024,6 @@
             const wall = document.getElementById('wall-preview');
             wall.style.backgroundColor = hex;
             
-            // Determine text contrast (light text for dark backgrounds)
             const darkHexes = ['#1E3A5F', '#383C42', '#6B7B6E', '#B86B52'];
             wall.style.color = darkHexes.includes(hex) ? '#FFFFFF' : '#161F33';
 
@@ -1055,12 +1043,160 @@
             }, 600);
         }
 
-        // 7. Ramadan Iftar 2027 Form Validation & Real QR Generation
+        // 7. Ramadan Iftar 2027 Form Validation, QR Code Generation & Formspree Integration
         const ADMIN_EMAIL = "30han20@gmail.com";
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnpdgaye";
         const STORAGE_KEY = "modern_paints_iftar_2027_registrants";
-// ... existing code ... -->
+
+        function getRegistrants() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveRegistrant(record) {
+            const list = getRegistrants();
+            list.push(record);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        }
+
+        // Helper to encode UTF-8 Arabic text properly for QRious Canvas
+        function toUtf8BytesString(str) {
+            return unescape(encodeURIComponent(str));
+        }
+
+        function setFieldError(fieldId, message) {
+            const errorEl = document.getElementById(`error-${fieldId}`);
+            const inputEl = document.getElementById(fieldId);
+            if (message) {
+                errorEl.textContent = message;
+                errorEl.classList.remove('hidden');
+                inputEl.classList.add('border-rose-500');
+            } else {
+                errorEl.classList.add('hidden');
+                inputEl.classList.remove('border-rose-500');
+            }
+        }
+
+        async function handleIftarSubmit(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const nationalId = document.getElementById('nationalId').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            let isValid = true;
+
+            // Validate Quadruple Name (at least 4 words)
+            const nameWords = fullName.split(/\s+/).filter(Boolean);
+            if (nameWords.length < 4) {
+                setFieldError('fullName', 'يرجى إدخال الاسم الرباعي كاملاً (4 مقاطع على الأقل).');
+                isValid = false;
+            } else {
+                setFieldError('fullName', '');
+            }
+
+            // Validate Egyptian National ID (14 digits)
+            if (!/^\d{14}$/.test(nationalId)) {
+                setFieldError('nationalId', 'الرقم القومي يجب أن يتكون من 14 رقماً صحيحاً.');
+                isValid = false;
+            } else {
+                setFieldError('nationalId', '');
+            }
+
+            // Validate Phone Number (11 digits starting with 01)
+            if (!/^01[0125]\d{8}$/.test(phone)) {
+                setFieldError('phone', 'يرجى إدخال رقم هاتف محمول مصري صحيح مكون من 11 رقماً.');
+                isValid = false;
+            } else {
+                setFieldError('phone', '');
+            }
+
+            // Validate Email
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                setFieldError('email', 'يرجى إدخال بريد إلكتروني صحيح.');
+                isValid = false;
+            } else {
+                setFieldError('email', '');
+            }
+
+            if (!isValid) return;
+
+            // Create Ticket Serial & Record
+            const existingList = getRegistrants();
+            const serialNumber = String(existingList.length + 1).padStart(4, '0');
+            const ticketId = `MPS-2027-${serialNumber}`;
+            const registeredAt = new Date().toLocaleString('ar-EG');
+
+            const record = {
+                ticketId,
+                fullName,
+                nationalId,
+                phone,
+                email,
+                registeredAt
+            };
+
+            // Save locally for Admin Table & Excel CSV Export
+            saveRegistrant(record);
+
+            // Populate Ticket Card
+            document.getElementById('ticket-serial-badge').textContent = ticketId;
+            document.getElementById('ticket-serial-text').textContent = ticketId;
+            document.getElementById('ticket-name').textContent = fullName;
+            document.getElementById('ticket-nid').textContent = nationalId;
+            document.getElementById('ticket-phone').textContent = phone;
+            document.getElementById('ticket-email').textContent = email;
+
+            // Prepare Manual Mailto Fallback Link
+            const mailSubject = encodeURIComponent(`تسجيل إفطار رمضان 2027 - ${fullName} (${ticketId})`);
+            const mailBody = encodeURIComponent(
+                `بيانات تسجيل جديدة في الإفطار الرمضاني 2027 - مدرسة الدهانات والديكورات الحديثة:\n\n` +
+                `رقم التذكرة: ${ticketId}\n` +
+                `الاسم الرباعي: ${fullName}\n` +
+                `الرقم القومي: ${nationalId}\n` +
+                `رقم الهاتف: ${phone}\n` +
+                `البريد الإلكتروني: ${email}\n` +
+                `تاريخ التسجيل: ${registeredAt}`
+            );
+            document.getElementById('manual-mailto-btn').href = `mailto:${ADMIN_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+
+            // Show Ticket View & Hide Form
+            document.getElementById('inline-form-container').classList.add('hidden');
+            document.getElementById('ticket-result-container').classList.remove('hidden');
+
+            // Generate High-Resolution QR Code on Canvas
+            const qrPayload = [
+                `مدرسة الدهانات والديكورات الحديثة`,
+                `الإفطار الرمضاني 2027`,
+                `التذكرة: ${ticketId}`,
+                `الاسم: ${fullName}`,
+                `الرقم القومي: ${nationalId}`,
+                `الهاتف: ${phone}`
+            ].join('\n');
+
+            try {
+                const canvas = document.getElementById('qrcode-canvas');
+                new QRious({
+                    element: canvas,
+                    value: toUtf8BytesString(qrPayload),
+                    size: 260,
+                    level: 'M',
+                    background: '#ffffff',
+                    foreground: '#070B14'
+                });
+            } catch (qrErr) {
+                console.error("QR Generation Error:", qrErr);
+            }
+
             // Send silently via Formspree API to https://formspree.io/f/mnpdgaye
+            const statusIcon = document.getElementById('email-status-icon');
+            const statusText = document.getElementById('email-status-text');
+
             try {
                 statusIcon.className = "fa-solid fa-spinner fa-spin text-gold-400 text-base";
                 statusText.textContent = `جاري إرسال البيانات تلقائياً إلى لوحة استقبال الإدارة...`;
@@ -1094,4 +1230,148 @@
                 statusText.textContent = `تم حفظ بياناتك في كشف الإدارة. يمكنك أيضاً إرسال نسخة بالضغط على زر البريد:`;
             }
         }
-// ... existing code ... -->
+
+        function downloadQRCode() {
+            const canvas = document.getElementById('qrcode-canvas');
+            const ticketId = document.getElementById('ticket-serial-text').textContent || 'QR-2027';
+            const link = document.createElement('a');
+            link.download = `تذكرة-افطار-2027-${ticketId}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function resetIftarForm() {
+            document.getElementById('iftar-form').reset();
+            document.getElementById('ticket-result-container').classList.add('hidden');
+            document.getElementById('inline-form-container').classList.remove('hidden');
+        }
+
+        // 8. Admin Modal & Registrants Sheet Logic
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-login-error').classList.add('hidden');
+            document.getElementById('admin-passcode-input').value = '';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function verifyAdminPasscode() {
+            const pass = document.getElementById('admin-passcode-input').value.trim();
+            if (pass === '2027') {
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminTable();
+            } else {
+                document.getElementById('admin-login-error').classList.remove('hidden');
+            }
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-table-body');
+            const searchQuery = (document.getElementById('admin-search-input').value || '').trim().toLowerCase();
+            const allRecords = getRegistrants();
+
+            document.getElementById('admin-total-count').textContent = allRecords.length;
+
+            const filtered = allRecords.filter(r =>
+                r.fullName.toLowerCase().includes(searchQuery) ||
+                r.nationalId.includes(searchQuery) ||
+                r.phone.includes(searchQuery) ||
+                r.ticketId.toLowerCase().includes(searchQuery)
+            );
+
+            tbody.innerHTML = '';
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="p-8 text-center text-slate-400 font-bold">
+                            لا توجد بيانات مسجلة حالياً مطابقة للبحث.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filtered.forEach((rec, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-white/5 transition-colors';
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-slate-400">${index + 1}</td>
+                    <td class="p-3.5 font-black text-emerald-400" dir="ltr">${rec.ticketId}</td>
+                    <td class="p-3.5 font-bold text-white">${rec.fullName}</td>
+                    <td class="p-3.5 font-mono text-gold-400" dir="ltr">${rec.nationalId}</td>
+                    <td class="p-3.5 font-mono text-white" dir="ltr">${rec.phone}</td>
+                    <td class="p-3.5 text-slate-300" dir="ltr">${rec.email}</td>
+                    <td class="p-3.5 text-xs text-slate-400">${rec.registeredAt}</td>
+                    <td class="p-3.5 text-center">
+                        <button onclick="deleteRegistrant('${rec.ticketId}')" class="text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors" title="حذف السجل">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteRegistrant(ticketId) {
+            if (!confirm(`هل أنت متأكد من حذف التذكرة رقم ${ticketId}؟`)) return;
+            const updated = getRegistrants().filter(r => r.ticketId !== ticketId);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+            renderAdminTable();
+        }
+
+        function exportRegistrantsToCSV() {
+            const records = getRegistrants();
+            if (records.length === 0) {
+                alert('لا توجد بيانات مسجلة لتصديرها حالياً.');
+                return;
+            }
+
+            const headers = ['م', 'رقم التذكرة', 'الاسم الرباعي', 'الرقم القومي', 'رقم الهاتف', 'البريد الإلكتروني', 'تاريخ التسجيل'];
+            const rows = records.map((r, i) => [
+                i + 1,
+                r.ticketId,
+                `"${r.fullName.replace(/"/g, '""')}"`,
+                `"\t${r.nationalId}"`,
+                `"\t${r.phone}"`,
+                r.email,
+                `"${r.registeredAt}"`
+            ]);
+
+            const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `كشف-مسجلين-افطار-رمضان-2027.csv`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function emailFullSheetToAdmin() {
+            const records = getRegistrants();
+            if (records.length === 0) {
+                alert('لا توجد بيانات مسجلة لإرسالها حالياً.');
+                return;
+            }
+
+            const lines = records.map((r, i) =>
+                `${i + 1}) ${r.fullName} | قومي: ${r.nationalId} | هاتف: ${r.phone} | تذكرة: ${r.ticketId}`
+            ).join('\n');
+
+            const subject = encodeURIComponent(`كشف المسجلين في الإفطار الرمضاني 2027 (${records.length} مسجل)`);
+            const body = encodeURIComponent(`كشف المسجلين في الإفطار الرمضاني لعام 2027 - مدرسة الدهانات والديكورات الحديثة:\n\n${lines}`);
+            window.location.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
+        }
+
+        // Initialize Page on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderManagement(managementMembers);
+            calculatePaint();
+        });
+    </script>
+</body>
+</html>
