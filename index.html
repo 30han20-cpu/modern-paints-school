@@ -203,11 +203,11 @@
                         <span class="text-xs sm:text-sm text-slate-300">برعاية رسمية من شركة</span>
                         <span class="font-extrabold text-sm sm:text-base tracking-wide text-white bg-gradient-to-l from-glc-red to-glc-blue px-2.5 py-0.5 rounded-lg">GLC Paints</span>
                     </div>
-
-                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-navy-800/90 border border-gold-500/30 shadow-lg">
-                        <i class="fa-solid fa-bullhorn text-gold-400 text-xs"></i>
-                        <span class="text-xs sm:text-sm text-slate-300">الوكيل الإعلاني شركة</span>
-                        <span class="font-extrabold text-sm sm:text-base tracking-wider text-gold-400">MP Define</span>
+                <!-- Notice about Formspree Integration -->
+                <div class="mt-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3.5 text-xs text-emerald-200 flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-check text-emerald-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong>الربط السحابي مفعل:</strong> جميع التسجيلات يتم إرسالها تلقائياً ومباشرة إلى حسابك على <strong>Formspree</strong> (<span class="underline font-bold" dir="ltr">formspree.io/f/mnpdgaye</span>) وبريدك الإلكتروني <span class="underline font-bold" dir="ltr">30han20@gmail.com</span>.
                     </div>
                 </div>
 
@@ -761,7 +761,7 @@
                 <div class="mb-4 text-right">
                     <label class="block text-xs font-bold text-slate-300 mb-1.5">رمز مرور الإدارة (الرمز الافتراضي: <span class="text-gold-400 font-black">2027</span>)</label>
                     <input type="password" id="admin-passcode-input" onkeyup="if(event.key==='Enter') verifyAdminPasscode()" placeholder="أدخل رمز المرور (2027)" class="w-full bg-navy-950 border border-white/15 rounded-xl px-4 py-3 text-white text-center font-bold tracking-widest focus:outline-none focus:border-gold-400">
-                    <p id="admin-login-error" class="hidden text-xs text-rose-400 mt-1.5 font-bold text-center">رمز المرور غير صحيح! الرمز الافتراضي هو 2027</p>
+                    <p id="admin-login-error" class="hidden text-xs text-rose-400 mt-1.5 font-bold text-center">رمز المرور غير صحيح! الرمز الافتراضي هو 151020</p>
                 </div>
 
                 <button onclick="verifyAdminPasscode()" class="w-full gold-gradient-bg text-navy-950 font-black py-3.5 rounded-xl shadow-gold hover:brightness-110 transition-all">
@@ -1057,93 +1057,15 @@
 
         // 7. Ramadan Iftar 2027 Form Validation & Real QR Generation
         const ADMIN_EMAIL = "30han20@gmail.com";
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnpdgaye";
         const STORAGE_KEY = "modern_paints_iftar_2027_registrants";
-
-        function getRegistrants() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                return raw ? JSON.parse(raw) : [];
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function saveRegistrant(record) {
-            try {
-                const list = getRegistrants();
-                list.push(record);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-            } catch (e) {
-                console.error("Storage error:", e);
-            }
-        }
-
-        function showFieldError(fieldId, message) {
-            const errEl = document.getElementById(`error-${fieldId}`);
-            const inputEl = document.getElementById(fieldId);
-            if (message) {
-                errEl.textContent = message;
-                errEl.classList.remove('hidden');
-                inputEl.classList.add('border-rose-500');
-            } else {
-                errEl.classList.add('hidden');
-                inputEl.classList.remove('border-rose-500');
-            }
-        }
-
-        function generateHighResQR(qrText) {
-            const canvas = document.getElementById('qrcode-canvas');
-            // Encode UTF-8 string safely so Arabic characters scan accurately on all mobile QR readers
-            const utf8EncodedText = unescape(encodeURIComponent(qrText));
-
-            if (typeof QRious !== 'undefined') {
-                new QRious({
-                    element: canvas,
-                    value: utf8EncodedText,
-                    size: 300,
-                    level: 'M',
-                    background: '#FFFFFF',
-                    foreground: '#070B14',
-                    padding: 12
-                });
-            } else {
-                // Fallback visual indicator if CDN fails offline
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#FFFFFF';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#070B14';
-                ctx.font = 'bold 14px Cairo, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('يرجى التحقق من اتصال الإنترنت', canvas.width / 2, canvas.height / 2);
-            }
-        }
-
-        async function sendRegistrationEmail(record) {
-            const statusIcon = document.getElementById('email-status-icon');
-            const statusText = document.getElementById('email-status-text');
-            const mailtoBtn = document.getElementById('manual-mailto-btn');
-
-            // Prepare manual mailto link as reliable backup
-            const subject = encodeURIComponent(`تسجيل جديد - الإفطار الرمضاني 2027 (${record.fullName})`);
-            const body = encodeURIComponent(
-                `بيانات مسجل جديد في الإفطار الرمضاني لعام 2027\n` +
-                `مدرسة الدهانات والديكورات الحديثة (برعاية GLC Paints - الوكيل MP Define)\n` +
-                `----------------------------------------\n` +
-                `رقم التذكرة: ${record.ticketId}\n` +
-                `الاسم الرباعي: ${record.fullName}\n` +
-                `الرقم القومي: ${record.nationalId}\n` +
-                `رقم الهاتف: ${record.phone}\n` +
-                `البريد الإلكتروني: ${record.email}\n` +
-                `تاريخ ووقت التسجيل: ${record.registeredAt}\n`
-            );
-            mailtoBtn.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
-
-            // Send silently via FormSubmit AJAX API to 30han20@gmail.com
+// ... existing code ... -->
+            // Send silently via Formspree API to https://formspree.io/f/mnpdgaye
             try {
                 statusIcon.className = "fa-solid fa-spinner fa-spin text-gold-400 text-base";
-                statusText.textContent = `جاري إرسال البيانات تلقائياً إلى (${ADMIN_EMAIL})...`;
+                statusText.textContent = `جاري إرسال البيانات تلقائياً إلى لوحة استقبال الإدارة...`;
 
-                const response = await fetch(`https://formsubmit.co/ajax/${ADMIN_EMAIL}`, {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1151,8 +1073,6 @@
                     },
                     body: JSON.stringify({
                         _subject: `تسجيل إفطار رمضان 2027 - ${record.fullName} (${record.ticketId})`,
-                        _template: "table",
-                        _captcha: "false",
                         "رقم_التذكرة": record.ticketId,
                         "الاسم_الرباعي": record.fullName,
                         "الرقم_القومي": record.nationalId,
@@ -1165,314 +1085,13 @@
 
                 if (response.ok) {
                     statusIcon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
-                    statusText.textContent = `تم إرسال نسخة من بياناتك بنجاح إلى بريد الإدارة (${ADMIN_EMAIL}).`;
+                    statusText.textContent = `تم إرسال بيانات تسجيلك بنجاح إلى إدارة المدرسة.`;
                 } else {
-                    throw new Error("FormSubmit response not OK");
+                    throw new Error("Formspree response not OK");
                 }
             } catch (error) {
                 statusIcon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-base";
                 statusText.textContent = `تم حفظ بياناتك في كشف الإدارة. يمكنك أيضاً إرسال نسخة بالضغط على زر البريد:`;
             }
         }
-
-        function handleIftarSubmit(event) {
-            event.preventDefault();
-
-            const fullName = document.getElementById('fullName').value.trim();
-            const nationalId = document.getElementById('nationalId').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-
-            let isValid = true;
-
-            // Validate Quadruple Name (at least 4 parts)
-            const nameParts = fullName.split(/\s+/).filter(Boolean);
-            if (nameParts.length < 4) {
-                showFieldError('fullName', 'يرجى إدخال الاسم الرباعي كاملاً (4 أسماء على الأقل).');
-                isValid = false;
-            } else {
-                showFieldError('fullName', '');
-            }
-
-            // Validate Egyptian National ID (14 digits)
-            if (!/^\d{14}$/.test(nationalId)) {
-                showFieldError('nationalId', 'الرقم القومي يجب أن يتكون من 14 رقماً صحيحاً.');
-                isValid = false;
-            } else {
-                showFieldError('nationalId', '');
-            }
-
-            // Validate Egyptian Phone Number (11 digits starting with 010, 011, 012, 015)
-            if (!/^01[0125]\d{8}$/.test(phone)) {
-                showFieldError('phone', 'يرجى إدخال رقم هاتف مصري صحيح مكون من 11 رقماً (يبدأ بـ 010/011/012/015).');
-                isValid = false;
-            } else {
-                showFieldError('phone', '');
-            }
-
-            // Validate Email Address
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                showFieldError('email', 'يرجى إدخال بريد إلكتروني صحيح.');
-                isValid = false;
-            } else {
-                showFieldError('email', '');
-            }
-
-            if (!isValid) return;
-
-            // Generate Serial Ticket Number (e.g., AET-2027-0001)
-            const existingList = getRegistrants();
-            const serialNumber = String(existingList.length + 1).padStart(4, '0');
-            const randomSuffix = Math.floor(10 + Math.random() * 90);
-            const ticketId = `AET-2027-${serialNumber}-${randomSuffix}`;
-            const registeredAt = new Date().toLocaleString('ar-EG', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-
-            const record = {
-                ticketId,
-                fullName,
-                nationalId,
-                phone,
-                email,
-                registeredAt
-            };
-
-            // Save to local storage for Admin Sheet & CSV Export
-            saveRegistrant(record);
-
-            // Populate Ticket Info
-            document.getElementById('ticket-serial-badge').textContent = ticketId;
-            document.getElementById('ticket-serial-text').textContent = ticketId;
-            document.getElementById('ticket-name').textContent = fullName;
-            document.getElementById('ticket-nid').textContent = nationalId;
-            document.getElementById('ticket-phone').textContent = phone;
-            document.getElementById('ticket-email').textContent = email;
-
-            // Build structured QR Code payload with Arabic details
-            const qrPayload = [
-                "مدرسة الدهانات والديكورات الحديثة",
-                "الإفطار الرمضاني 2027",
-                `رقم التذكرة: ${ticketId}`,
-                `الاسم: ${fullName}`,
-                `الرقم القومي: ${nationalId}`,
-                `الهاتف: ${phone}`
-            ].join("\n");
-
-            // Render high-res QR Code directly on Canvas
-            generateHighResQR(qrPayload);
-
-            // Switch views
-            document.getElementById('inline-form-container').classList.add('hidden');
-            document.getElementById('ticket-result-container').classList.remove('hidden');
-
-            // Dispatch email notification to 30han20@gmail.com
-            sendRegistrationEmail(record);
-        }
-
-        // Download QR Code Canvas directly as PNG Image
-        function downloadQRCode() {
-            const canvas = document.getElementById('qrcode-canvas');
-            const fullName = document.getElementById('ticket-name').textContent || 'دعوة_افطار_2027';
-
-            if (canvas) {
-                const dataUrl = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
-                link.href = dataUrl;
-                link.download = `QR_افطار_2027_${fullName.replace(/\s+/g, '_')}.png`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        }
-
-        // Reset Form to Register Another Person
-        function resetIftarForm() {
-            document.getElementById('iftar-form').reset();
-            document.getElementById('ticket-result-container').classList.add('hidden');
-            document.getElementById('inline-form-container').classList.remove('hidden');
-        }
-
-        // 8. Admin Dashboard Modal & Excel (CSV) Export Logic
-        let isAdminAuthenticated = false;
-
-        function openAdminModal() {
-            document.getElementById('admin-modal').classList.remove('hidden');
-            if (isAdminAuthenticated) {
-                document.getElementById('admin-login-view').classList.add('hidden');
-                document.getElementById('admin-dashboard-view').classList.remove('hidden');
-                renderAdminTable();
-            } else {
-                document.getElementById('admin-login-view').classList.remove('hidden');
-                document.getElementById('admin-dashboard-view').classList.add('hidden');
-                document.getElementById('admin-passcode-input').value = '';
-                document.getElementById('admin-login-error').classList.add('hidden');
-            }
-        }
-
-        function closeAdminModal() {
-            document.getElementById('admin-modal').classList.add('hidden');
-        }
-
-        function verifyAdminPasscode() {
-            const pass = document.getElementById('admin-passcode-input').value.trim();
-            if (pass === '2027') {
-                isAdminAuthenticated = true;
-                document.getElementById('admin-login-error').classList.add('hidden');
-                document.getElementById('admin-login-view').classList.add('hidden');
-                document.getElementById('admin-dashboard-view').classList.remove('hidden');
-                renderAdminTable();
-            } else {
-                document.getElementById('admin-login-error').classList.remove('hidden');
-            }
-        }
-
-        function renderAdminTable() {
-            const list = getRegistrants();
-            const query = (document.getElementById('admin-search-input')?.value || '').trim().toLowerCase();
-            const tbody = document.getElementById('admin-table-body');
-            const totalBadge = document.getElementById('admin-total-count');
-
-            totalBadge.textContent = list.length;
-            tbody.innerHTML = '';
-
-            const filtered = list.filter(item =>
-                item.fullName.toLowerCase().includes(query) ||
-                item.nationalId.includes(query) ||
-                item.phone.includes(query) ||
-                item.ticketId.toLowerCase().includes(query)
-            );
-
-            if (filtered.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="8" class="p-8 text-center text-slate-400">
-                            <i class="fa-solid fa-folder-open text-3xl mb-2 block text-slate-600"></i>
-                            لا توجد بيانات مسجلة حتى الآن.
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-
-            filtered.forEach((item, idx) => {
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-navy-800/60 transition-colors';
-                tr.innerHTML = `
-                    <td class="p-3.5 font-bold text-slate-400">${idx + 1}</td>
-                    <td class="p-3.5 font-black text-emerald-400 whitespace-nowrap" dir="ltr">${item.ticketId}</td>
-                    <td class="p-3.5 font-bold text-white whitespace-nowrap">${item.fullName}</td>
-                    <td class="p-3.5 font-semibold text-gold-400 whitespace-nowrap" dir="ltr">${item.nationalId}</td>
-                    <td class="p-3.5 text-slate-200 whitespace-nowrap" dir="ltr">${item.phone}</td>
-                    <td class="p-3.5 text-slate-300 text-xs" dir="ltr">${item.email}</td>
-                    <td class="p-3.5 text-slate-400 text-xs whitespace-nowrap">${item.registeredAt}</td>
-                    <td class="p-3.5 text-center">
-                        <button onclick="viewTicketFromAdmin('${item.ticketId}')" class="px-2.5 py-1 rounded-lg bg-gold-500/20 text-gold-300 hover:bg-gold-500 hover:text-navy-950 font-bold text-xs transition-colors">
-                            عرض QR
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function viewTicketFromAdmin(ticketId) {
-            const list = getRegistrants();
-            const record = list.find(r => r.ticketId === ticketId);
-            if (!record) return;
-
-            closeAdminModal();
-
-            document.getElementById('ticket-serial-badge').textContent = record.ticketId;
-            document.getElementById('ticket-serial-text').textContent = record.ticketId;
-            document.getElementById('ticket-name').textContent = record.fullName;
-            document.getElementById('ticket-nid').textContent = record.nationalId;
-            document.getElementById('ticket-phone').textContent = record.phone;
-            document.getElementById('ticket-email').textContent = record.email;
-
-            const qrPayload = [
-                "مدرسة الدهانات والديكورات الحديثة",
-                "الإفطار الرمضاني 2027",
-                `رقم التذكرة: ${record.ticketId}`,
-                `الاسم: ${record.fullName}`,
-                `الرقم القومي: ${record.nationalId}`,
-                `الهاتف: ${record.phone}`
-            ].join("\n");
-
-            generateHighResQR(qrPayload);
-
-            document.getElementById('inline-form-container').classList.add('hidden');
-            document.getElementById('ticket-result-container').classList.remove('hidden');
-            document.getElementById('iftar-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Export Registrants Sheet as UTF-8 BOM CSV (Opens cleanly in Microsoft Excel with Arabic)
-        function exportRegistrantsToCSV() {
-            const list = getRegistrants();
-            if (list.length === 0) {
-                return;
-            }
-
-            const headers = ["م", "رقم التذكرة", "الاسم الرباعي", "الرقم القومي", "رقم الهاتف", "البريد الإلكتروني", "تاريخ التسجيل"];
-            const rows = list.map((item, index) => [
-                index + 1,
-                `"${item.ticketId}"`,
-                `"${item.fullName.replace(/"/g, '""')}"`,
-                `"\t${item.nationalId}"`, // Tab prefix prevents Excel from converting 14-digit National ID to scientific notation
-                `"\t${item.phone}"`,      // Preserves leading zero in phone numbers
-                `"${item.email}"`,
-                `"${item.registeredAt}"`
-            ]);
-
-            const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
-            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-            const url = URL.createObjectURL(blob);
-
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `كشف_المسجلين_افطار_رمضان_2027.csv`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }
-
-        // Send Entire Registrants Table to 30han20@gmail.com
-        function emailFullSheetToAdmin() {
-            const list = getRegistrants();
-            const subject = encodeURIComponent(`كشف المسجلين الكامل - الإفطار الرمضاني 2027 (${list.length} مسجل)`);
-
-            let lines = [
-                "كشف المسجلين في الإفطار الرمضاني لعام 2027",
-                "مدرسة الدهانات والديكورات الحديثة (GLC Paints & MP Define)",
-                `إجمالي المسجلين: ${list.length}`,
-                "=========================================="
-            ];
-
-            if (list.length === 0) {
-                lines.push("لا توجد بيانات مسجلة حتى الآن.");
-            } else {
-                list.forEach((item, idx) => {
-                    lines.push(
-                        `${idx + 1}) ${item.fullName}\n` +
-                        `   رقم التذكرة: ${item.ticketId} | الرقم القومي: ${item.nationalId} | الهاتف: ${item.phone} | البريد: ${item.email}`
-                    );
-                });
-            }
-
-            const body = encodeURIComponent(lines.join("\n"));
-            window.location.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
-        }
-
-        // Initialize on Page Load
-        window.addEventListener('DOMContentLoaded', () => {
-            renderManagement(managementMembers);
-            calculatePaint();
-        });
-    </script>
-</body>
-</html>
+// ... existing code ... -->
