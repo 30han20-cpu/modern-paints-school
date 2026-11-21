@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسة الدهانات والديكورات الحديثة | برعاية GLC Paints</title>
+    
+    <!-- Google Fonts: Cairo & Tajawal for modern Arabic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- QRious for reliable high-resolution Canvas QR Code generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#161F33',
+                            900: '#0D1322',
+                            950: '#070B14',
+                        },
+                        gold: {
+                            300: '#FDE08D',
+                            400: '#F5C451',
+                            500: '#D4AF37',
+                            600: '#B59020',
+                        },
+                        glc: {
+                            red: '#E30613',
+                            blue: '#005596',
+                        }
+                    },
+                    boxShadow: {
+                        'gold': '0 10px 30px -10px rgba(212, 175, 55, 0.35)',
+                        'card': '0 20px 40px -15px rgba(0, 0, 0, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #070B14;
+            color: #F8FAFC;
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FDE08D 0%, #D4AF37 50%, #F5C451 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #F5C451 0%, #D4AF37 50%, #B59020 100%);
+        }
+
+        .glass-card {
+            background: rgba(22, 31, 51, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-gold {
+            background: linear-gradient(145deg, rgba(22, 31, 51, 0.9), rgba(13, 19, 34, 0.95));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(0, 85, 150, 0.18) 0%, transparent 45%);
+        }
+
+        /* Print Styles for VIP Iftar Ticket */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-ticket-area, #printable-ticket-area * {
+                visibility: visible;
+            }
+            #printable-ticket-area {
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                max-width: 420px;
+                background: #0D1322 !important;
+                color: #FFFFFF !important;
+                border: 2px solid #D4AF37 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        /* QR Code styling wrapper */
+        #qrcode-canvas {
+            margin: 0 auto;
+            border-radius: 12px;
+            background: #ffffff;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-navy-950">
+
+    <!-- Top Fixed Navigation Bar -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-navy-950/90 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Name -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl gold-gradient-bg flex items-center justify-center text-navy-950 shadow-gold group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-paint-roller text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-base sm:text-lg font-extrabold text-white leading-tight">مدرسة الدهانات والديكورات الحديثة</span>
+                        <span class="block text-[11px] text-gold-400 font-medium">برعاية GLC Paints • الوكيل MP Define</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-300">
+                    <a href="#home" class="hover:text-gold-400 transition-colors">الرئيسية</a>
+                    <a href="#encyclopedia" class="hover:text-gold-400 transition-colors">موسوعة الدهانات</a>
+                    <a href="#calculator" class="hover:text-gold-400 transition-colors">حاسبة الكميات</a>
+                    <a href="#management" class="hover:text-gold-400 transition-colors">إدارة المدرسة (45)</a>
+                    <a href="#iftar-section" class="hover:text-gold-400 transition-colors">الإفطار الرمضاني 2027</a>
+                    <button onclick="openAdminModal()" class="text-gold-400 hover:text-gold-300 transition-colors flex items-center gap-1.5 bg-gold-500/10 px-3 py-1.5 rounded-xl border border-gold-500/30">
+                        <i class="fa-solid fa-table-list"></i>
+                        <span>كشف المسجلين (الإدارة)</span>
+                    </button>
+                </nav>
+
+                <!-- CTA & Mobile Menu Button -->
+                <div class="flex items-center gap-2.5">
+                    <button onclick="openAdminModal()" class="lg:hidden p-2.5 rounded-xl bg-gold-500/15 text-gold-400 border border-gold-500/30" title="كشف المسجلين (الإدارة)">
+                        <i class="fa-solid fa-table-list text-base"></i>
+                    </button>
+
+                    <button onclick="openIftarModal()" class="gold-gradient-bg text-navy-950 font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-gold hover:brightness-110 active:scale-95 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-moon"></i>
+                        <span>تسجيل الإفطار 2027</span>
+                    </button>
+                    
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-navy-800 text-slate-200 hover:text-gold-400 border border-white/10" aria-label="القائمة">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-b border-white/10 px-4 pt-2 pb-5 space-y-2">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-navy-800 hover:text-gold-400 font-semibold">الرئيسية</a>
+            <a href="#encyclopedia" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-navy-800 hover:text-gold-400 font-semibold">موسوعة الدهانات والديكورات</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-navy-800 hover:text-gold-400 font-semibold">حاسبة الدهانات ومحاكي الألوان</a>
+            <a href="#management" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-navy-800 hover:text-gold-400 font-semibold">إدارة المدرسة (45 عضو)</a>
+            <a href="#iftar-section" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-gold-400 bg-navy-800/60 font-bold">التسجيل في الإفطار الرمضاني 2027</a>
+            <button onclick="toggleMobileMenu(); openAdminModal();" class="w-full text-right px-4 py-2.5 rounded-xl text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 font-bold flex items-center gap-2">
+                <i class="fa-solid fa-table-list"></i>
+                <span>كشف المسجلين وتصدير Excel (الإدارة)</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="home" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 hero-pattern border-b border-white/10 overflow-hidden">
+            <!-- Decorative Color Swatches Floating Elements -->
+            <div class="absolute top-28 left-8 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-12 right-12 w-48 h-48 bg-glc-blue/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Sponsorship Badges -->
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-navy-800/90 border border-white/15 shadow-lg">
+                        <span class="w-2.5 h-2.5 rounded-full bg-glc-red animate-pulse"></span>
+                        <span class="text-xs sm:text-sm text-slate-300">برعاية رسمية من شركة</span>
+                        <span class="font-extrabold text-sm sm:text-base tracking-wide text-white bg-gradient-to-l from-glc-red to-glc-blue px-2.5 py-0.5 rounded-lg">GLC Paints</span>
+                    </div>
+
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-navy-800/90 border border-gold-500/30 shadow-lg">
+                        <i class="fa-solid fa-bullhorn text-gold-400 text-xs"></i>
+                        <span class="text-xs sm:text-sm text-slate-300">الوكيل الإعلاني شركة</span>
+                        <span class="font-extrabold text-sm sm:text-base tracking-wider text-gold-400">MP Define</span>
+                    </div>
+                </div>
+
+                <!-- Main Title & Subtitle -->
+                <div class="text-center max-w-4xl mx-auto">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-300 text-xs sm:text-sm font-bold mb-5">
+                        <i class="fa-solid fa-award ml-1.5"></i> الصرح الأول لتطوير فنون الطلاء والديكور الحديث في مصر
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        مدرسة <span class="gold-gradient-text">الدهانات والديكورات</span> الحديثة
+                    </h1>
+
+                    <p class="text-base sm:text-lg lg:text-xl text-slate-300 font-tajawal leading-relaxed mb-10 max-w-3xl mx-auto">
+                        نرتقي بمهارات الفنيين والمهندسين ومحترفي التشطيبات من خلال أحدث تقنيات الطلاء، الديكورات العصرية، والحلول الإنشائية المتكاملة بدعم من رواد الصناعة في مصر والشرق الأوسط.
+                    </p>
+
+                    <!-- Primary Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button onclick="openIftarModal()" class="w-full sm:w-auto gold-gradient-bg text-navy-950 font-extrabold text-base px-8 py-4 rounded-2xl shadow-gold hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-kaaba text-lg"></i>
+                            <span>سجّل الآن في الإفطار الرمضاني 2027</span>
+                            <i class="fa-solid fa-qrcode text-lg"></i>
+                        </button>
+
+                        <a href="#encyclopedia" class="w-full sm:w-auto glass-card hover:bg-navy-800 text-white font-bold text-base px-8 py-4 rounded-2xl border border-white/15 transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-palette text-gold-400"></i>
+                            <span>استكشف عالم الدهانات</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Key Highlights Bar -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="w-11 h-11 mx-auto mb-3 rounded-xl bg-gold-500/15 text-gold-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <div class="text-2xl sm:text-3xl font-black text-white">45</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1">قيادة وعضو إدارة</div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="w-11 h-11 mx-auto mb-3 rounded-xl bg-blue-500/15 text-blue-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-fill-drip"></i>
+                        </div>
+                        <div class="text-2xl sm:text-3xl font-black text-white">+120</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1">تقنية طلاء وديكور حديث</div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="w-11 h-11 mx-auto mb-3 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div class="text-2xl sm:text-3xl font-black text-white">GLC</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1">رعاية تقنية وفنية معتمدة</div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="w-11 h-11 mx-auto mb-3 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div class="text-2xl sm:text-3xl font-black text-gold-400">2027</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1">تجمع الإفطار الرمضاني السنوي</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Paint & Decor Encyclopedia Section -->
+        <section id="encyclopedia" class="py-20 bg-navy-900/60 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-gold-400 font-bold text-sm tracking-wider uppercase">الدليل الفني الشامل</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white mt-2 mb-4">موسوعة الدهانات والديكورات الحديثة</h2>
+                    <p class="text-slate-400 font-tajawal text-sm sm:text-base">
+                        كل ما يحتاجه المهندس والفني والعميل من أسرار التأسيس الصحيح، أنواع الطلاءات الديكورية، وأحدث صيحات الألوان لعام 2026 - 2027.
+                    </p>
+                </div>
+
+                <!-- Interactive Tabs -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 mb-10" role="tablist">
+                    <button onclick="switchTab('types')" id="tab-types" class="tab-btn active px-5 py-3 rounded-2xl font-bold text-sm transition-all gold-gradient-bg text-navy-950 shadow-gold">
+                        <i class="fa-solid fa-swatchbook ml-2"></i>أنواع الدهانات الحديثة
+                    </button>
+                    <button onclick="switchTab('steps')" id="tab-steps" class="tab-btn px-5 py-3 rounded-2xl font-bold text-sm transition-all glass-card text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-layer-group ml-2"></i>خطوات التأسيس والتشطيب
+                    </button>
+                    <button onclick="switchTab('trends')" id="tab-trends" class="tab-btn px-5 py-3 rounded-2xl font-bold text-sm transition-all glass-card text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-wand-magic-sparkles ml-2"></i>صيحات الديكور ومعالجة الرطوبة
+                    </button>
+                </div>
+
+                <!-- Tab Content 1: Paint Types -->
+                <div id="content-types" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">الدهانات المائية (البلاستيك)</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed mb-4">
+                            دهانات أكريليك عالية الجودة سريعة الجفاف، عديمة الرائحة، وقابلة للغسيل المتكرر. تتوفر بدرجات لمعة متعددة (مط، ربع لمعة، نصف لمعة، ولامع).
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gold-400 font-semibold">
+                            <span>الاستخدام: الحوائط والأسقف</span>
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-brush"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">الدهانات الديكورية الحديثة</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed mb-4">
+                            تشمل (القطيفة، الشمواه، الاستيكو، الترافنتينو، والترخيم). تمنح الجدران ملمساً مخملياً أو حجرياً فاخراً يتفاعل مع الإضاءة بشكل ساحر.
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gold-400 font-semibold">
+                            <span>الاستخدام: حوائط التميز والريسبشن</span>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">دهانات الإيبوكسي والعزل</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed mb-4">
+                            طلاءات شديدة الصلابة مقاومة للاحتكاك والمواد الكيميائية والرطوبة، مثالية للأرضيات ثلاثية الأبعاد، الجراجات، وعزل الأسطح والخزانات.
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gold-400 font-semibold">
+                            <span>الاستخدام: الأرضيات والعزل</span>
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="glass-card rounded-3xl p-6 hover:border-gold-500/40 transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-red-700 flex items-center justify-center text-white text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-tree"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">دهانات الأخشاب والمعادن</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed mb-4">
+                            تشمل البولي يوريثان، الأستر، الدوكو، واللاكية والبرايمر المقاوم للصدأ، لحماية الأبواب والأثاث والهياكل المعدنية وإبراز جمالها.
+                        </p>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gold-400 font-semibold">
+                            <span>الاستخدام: الأبواب والواجهات</span>
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 2: Preparation & Finishing Steps -->
+                <div id="content-steps" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+                        <span class="absolute top-4 left-5 text-5xl font-black text-white/5">01</span>
+                        <div class="text-gold-400 font-extrabold text-sm mb-2">المرحلة الأولى</div>
+                        <h3 class="text-lg font-bold text-white mb-2">تجهيز السطح والصنفرة الأولية</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            كشط الرواسب الأسمنتية بحجر الجلخ، تنظيف الحوائط من الأتربة والزيوت تماماً لضمان تماسك الطبقات التالية وعدم تقشيرها مستقبلاً.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+                        <span class="absolute top-4 left-5 text-5xl font-black text-white/5">02</span>
+                        <div class="text-gold-400 font-extrabold text-sm mb-2">المرحلة الثانية</div>
+                        <h3 class="text-lg font-bold text-white mb-2">تطبيق السيلر المائي (الأساس)</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            دهان وجه سيلر مائي عالي النفاذية لسد مسام المحارة، تثبيت السطح، وتقليل استهلاك المعجون والدهان النهائي بنسبة تصل إلى 30%.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+                        <span class="absolute top-4 left-5 text-5xl font-black text-white/5">03</span>
+                        <div class="text-gold-400 font-extrabold text-sm mb-2">المرحلة الثالثة</div>
+                        <h3 class="text-lg font-bold text-white mb-2">سحب المعجون (3 سكاكين متعامدة)</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            تطبيق السكينة الأولى طولياً، ثم الثانية عرضياً بعد الجفاف، ثم الثالثة (التلقيط والتنعيم) للحصول على سطح مستوٍ تماماً كالمرآة.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+                        <span class="absolute top-4 left-5 text-5xl font-black text-white/5">04</span>
+                        <div class="text-gold-400 font-extrabold text-sm mb-2">المرحلة الرابعة</div>
+                        <h3 class="text-lg font-bold text-white mb-2">الصنفرة الدقيقة والتنظيف</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            استخدام صنفرة ناعمة (رقم 180 ثم 220) مع كشاف إضاءة جانبي لكشف أي تموجات، ثم إزالة غبار الصنفرة بفرشاة ناعمة أو بلاور.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+                        <span class="absolute top-4 left-5 text-5xl font-black text-white/5">05</span>
+                        <div class="text-gold-400 font-extrabold text-sm mb-2">المرحلة الخامسة</div>
+                        <h3 class="text-lg font-bold text-white mb-2">وجه البطانة (Primer Coat)</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            إعطاء وجه بطانة بلاستيك مط عالي التغطية بلون مقارب للون التشطيب النهائي لتوحيد امتصاص السطح وإظهار درجة اللون الحقيقية.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+                        <span class="absolute top-4 left-5 text-5xl font-black text-white/5">06</span>
+                        <div class="text-gold-400 font-extrabold text-sm mb-2">المرحلة السادسة</div>
+                        <h3 class="text-lg font-bold text-white mb-2">التشطيب النهائي (وجهين بالرولة)</h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            تخفيف الدهان بالنسب الموصى بها من الشركة المنتجة (GLC)، وتطبيقه على وجهين متتاليين بفاصل زمني 4 ساعات للحصول على ملمس حريري متجانس.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tab Content 3: Decor Trends & Moisture Solutions -->
+                <div id="content-trends" class="tab-content hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-gold-400">
+                        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-sun text-gold-400"></i> الألوان الترابية والدافئة
+                        </h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            تتصدر درجات (البيج الرملي، الجريج، الأخضر الزيتوني، والتيراكوتا) موضة الديكور الحديث لكونها تمنح اتساعاً بصرياً وهدوءاً نفسياً وتتناغم مع الأخشاب الطبيعية.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-blue-400">
+                        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-blue-400"></i> تأثير الإضاءة على الطلاء
+                        </h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            الإضاءة الصفراء الدافئة (3000K) تبرز الدرجات الذهبية والكريمية، بينما الإضاءة المحايدة (4000K) هي الأفضل لإظهار ألوان الدهانات الديكورية والقطيفة بدقة واقعية.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 border-t-4 border-t-emerald-400">
+                        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-droplet-slash text-emerald-400"></i> الحل الجذري للرطوبة والأملاح
+                        </h3>
+                        <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                            يتم كشط المنطقة المتضررة حتى الطوب، معالجة مصدر التسريب، غسل الحائط بمحلول مخفف، ثم تطبيق عازل رطوبة إيبوكسي قبل إعادة المحارة والمعجون المقاوم للرطوبة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Interactive Paint Calculator & Color Visualizer -->
+        <section id="calculator" class="py-20 bg-navy-950 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    
+                    <!-- Paint Quantity Calculator -->
+                    <div class="lg:col-span-6 glass-card-gold rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 text-xs font-bold mb-4">
+                                <i class="fa-solid fa-calculator"></i> أداة تقدير ذكية
+                            </div>
+                            <h3 class="text-2xl font-black text-white mb-2">حاسبة كمية الدهان المطلوبة</h3>
+                            <p class="text-slate-400 text-sm font-tajawal mb-6">
+                                أدخل أبعاد الغرفة أو المساحة الإجمالية لحساب الكمية التقديرية للدهان (وجهين) بدقة.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">المساحة الإجمالية (متر مربع)</label>
+                                    <input type="number" id="calc-area" value="60" min="1" max="10000" oninput="calculatePaint()" class="w-full bg-navy-900 border border-white/15 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:border-gold-400">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">نوع الدهان</label>
+                                    <select id="calc-type" onchange="calculatePaint()" class="w-full bg-navy-900 border border-white/15 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:border-gold-400">
+                                        <option value="10">بلاستيك مط / نصف لمعة (10 م² / لتر)</option>
+                                        <option value="8">سيلر مائي تأسيس (8 م² / لتر)</option>
+                                        <option value="6">دهان ديكوري قطيفة / شمواه (6 م² / لتر)</option>
+                                        <option value="12">لاكية / دهان أخشاب (12 م² / لتر)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-navy-900/90 border border-gold-500/25 rounded-2xl p-5 flex items-center justify-between">
+                            <div>
+                                <span class="block text-xs text-slate-400">الكمية التقديرية المطلوبة (لوجهين):</span>
+                                <span id="calc-result-liters" class="text-3xl font-black text-gold-400">12 لتر</span>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-xs text-slate-400">ما يعادل تقريباً:</span>
+                                <span id="calc-result-buckets" class="text-sm font-bold text-white bg-navy-800 px-3 py-1.5 rounded-lg inline-block mt-1">1 بستلة (10 لتر) + 1 جالون</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Color Palette Previewer -->
+                    <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 text-xs font-bold mb-4">
+                                <i class="fa-solid fa-eye-dropper"></i> كتالوج الألوان التفاعلي
+                            </div>
+                            <h3 class="text-2xl font-black text-white mb-2">معاينة تناسق ألوان الديكور</h3>
+                            <p class="text-slate-400 text-sm font-tajawal mb-5">
+                                اختر درجة لونية من باليت الألوان العصرية لمعاينة تباينها مع الديكور الذهبي والإضاءة.
+                            </p>
+
+                            <!-- Swatch Buttons -->
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <button onclick="selectSwatch('#EAE3D2', 'فانيلا لاتيه (Vanilla Latte)', 'GLC-1042')" class="w-10 h-10 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform" style="background-color: #EAE3D2;" title="فانيلا لاتيه"></button>
+                                <button onclick="selectSwatch('#C5BDB0', 'جريج دافئ (Warm Greige)', 'GLC-2085')" class="w-10 h-10 rounded-full border-2 border-white/40 shadow-md hover:scale-110 transition-transform" style="background-color: #C5BDB0;" title="جريج دافئ"></button>
+                                <button onclick="selectSwatch('#6B7B6E', 'أخضر زيتوني هادئ (Sage Olive)', 'GLC-3190')" class="w-10 h-10 rounded-full border-2 border-white/40 shadow-md hover:scale-110 transition-transform" style="background-color: #6B7B6E;" title="أخضر زيتوني"></button>
+                                <button onclick="selectSwatch('#1E3A5F', 'أزرق ملكي عميق (Royal Navy)', 'GLC-4410')" class="w-10 h-10 rounded-full border-2 border-white/40 shadow-md hover:scale-110 transition-transform" style="background-color: #1E3A5F;" title="أزرق ملكي"></button>
+                                <button onclick="selectSwatch('#B86B52', 'تيراكوتا عصري (Modern Terracotta)', 'GLC-5218')" class="w-10 h-10 rounded-full border-2 border-white/40 shadow-md hover:scale-110 transition-transform" style="background-color: #B86B52;" title="تيراكوتا"></button>
+                                <button onclick="selectSwatch('#383C42', 'رمادي فحمي (Charcoal Slate)', 'GLC-6009')" class="w-10 h-10 rounded-full border-2 border-white/40 shadow-md hover:scale-110 transition-transform" style="background-color: #383C42;" title="رمادي فحمي"></button>
+                            </div>
+                        </div>
+
+                        <!-- Live Room Wall Simulation Box -->
+                        <div id="wall-preview" class="rounded-2xl p-6 transition-colors duration-500 relative overflow-hidden border border-white/20 shadow-inner" style="background-color: #EAE3D2; color: #161F33;">
+                            <div class="flex items-center justify-between relative z-10">
+                                <div>
+                                    <span class="text-xs font-extrabold uppercase tracking-wider opacity-75">اللون المختار حالياً</span>
+                                    <h4 id="swatch-name" class="text-xl font-black mt-0.5">فانيلا لاتيه (Vanilla Latte)</h4>
+                                    <span id="swatch-code" class="inline-block mt-1 text-xs font-bold px-2.5 py-0.5 rounded-md bg-black/15">كود اللون: GLC-1042</span>
+                                </div>
+                                <div class="w-14 h-14 rounded-2xl bg-black/10 backdrop-blur-sm flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-couch"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. School Management Section (All 45 Members) -->
+        <section id="management" class="py-20 bg-navy-900/70 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div>
+                        <span class="text-gold-400 font-bold text-sm tracking-wider">قيادات وكوادر المدرسة</span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-white mt-2">إدارة مدرسة الدهانات والديكورات الحديثة</h2>
+                        <p class="text-slate-400 font-tajawal text-sm sm:text-base mt-2">
+                            نخبة من رواد وخبراء مجال الدهانات والديكورات في مصر (45 عضواً مؤسساً وإدارياً).
+                        </p>
+                    </div>
+
+                    <!-- Instant Search Box -->
+                    <div class="w-full md:w-80 relative">
+                        <input type="text" id="management-search" onkeyup="filterManagement()" placeholder="ابحث عن اسم عضو الإدارة..." class="w-full bg-navy-950 border border-white/15 rounded-2xl pr-11 pl-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors">
+                        <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    </div>
+                </div>
+
+                <!-- Management Cards Grid (Populated via JS with all 45 exact names) -->
+                <div id="management-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <!-- Dynamic content injected here -->
+                </div>
+
+                <!-- Empty Search State -->
+                <div id="no-management-results" class="hidden text-center py-12 glass-card rounded-3xl">
+                    <i class="fa-solid fa-user-slash text-4xl text-slate-500 mb-3"></i>
+                    <p class="text-slate-300 font-bold">لم يتم العثور على اسم مطابق لبحثك.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Ramadan Iftar 2027 Banner & Direct Registration Section -->
+        <section id="iftar-section" class="py-20 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950 relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="glass-card-gold rounded-3xl p-8 sm:p-12 shadow-card">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/20 text-gold-300 text-xs sm:text-sm font-extrabold mb-4">
+                            <i class="fa-solid fa-star-and-crescent"></i> الحدث السنوي الأضخم لعائلة الدهانات
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-black text-white mb-3">
+                            التسجيل في <span class="gold-gradient-text">الإفطار الرمضاني لعام 2027</span>
+                        </h2>
+                        <p class="text-slate-300 font-tajawal text-sm sm:text-base">
+                            سجّل بياناتك الآن للحصول على بطاقة الدعوة الإلكترونية الخاصة بك والمزودة برمز <strong class="text-gold-400">QR Code</strong> للدخول السريع.
+                        </p>
+                    </div>
+
+                    <!-- Inline Registration Form Container -->
+                    <div id="inline-form-container">
+                        <form id="iftar-form" onsubmit="handleIftarSubmit(event)" class="space-y-5 max-w-2xl mx-auto" novalidate>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <!-- Full Quadruple Name -->
+                                <div class="sm:col-span-2">
+                                    <label for="fullName" class="block text-sm font-bold text-slate-200 mb-2">
+                                        الاسم الرباعي <span class="text-rose-400">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="text" id="fullName" required placeholder="مثال: أحمد محمد محمود علي" class="w-full bg-navy-950/90 border border-white/15 rounded-xl pr-11 pl-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors">
+                                        <i class="fa-solid fa-user absolute right-4 top-1/2 -translate-y-1/2 text-gold-400"></i>
+                                    </div>
+                                    <p id="error-fullName" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
+                                </div>
+
+                                <!-- National ID (14 digits) -->
+                                <div>
+                                    <label for="nationalId" class="block text-sm font-bold text-slate-200 mb-2">
+                                        الرقم القومي (14 رقم) <span class="text-rose-400">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="text" id="nationalId" inputmode="numeric" maxlength="14" required placeholder="29001010101234" class="w-full bg-navy-950/90 border border-white/15 rounded-xl pr-11 pl-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors tracking-wider" dir="ltr">
+                                        <i class="fa-solid fa-id-card absolute right-4 top-1/2 -translate-y-1/2 text-gold-400"></i>
+                                    </div>
+                                    <p id="error-nationalId" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
+                                </div>
+
+                                <!-- Phone Number (11 digits) -->
+                                <div>
+                                    <label for="phone" class="block text-sm font-bold text-slate-200 mb-2">
+                                        رقم الهاتف <span class="text-rose-400">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="tel" id="phone" inputmode="tel" maxlength="11" required placeholder="01012345678" class="w-full bg-navy-950/90 border border-white/15 rounded-xl pr-11 pl-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors tracking-wider" dir="ltr">
+                                        <i class="fa-solid fa-phone absolute right-4 top-1/2 -translate-y-1/2 text-gold-400"></i>
+                                    </div>
+                                    <p id="error-phone" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="sm:col-span-2">
+                                    <label for="email" class="block text-sm font-bold text-slate-200 mb-2">
+                                        البريد الإلكتروني <span class="text-rose-400">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="email" id="email" required placeholder="example@domain.com" class="w-full bg-navy-950/90 border border-white/15 rounded-xl pr-11 pl-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-gold-400 transition-colors" dir="ltr">
+                                        <i class="fa-solid fa-envelope absolute right-4 top-1/2 -translate-y-1/2 text-gold-400"></i>
+                                    </div>
+                                    <p id="error-email" class="hidden text-xs text-rose-400 mt-1.5 font-semibold"></p>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full gold-gradient-bg text-navy-950 font-black text-base sm:text-lg py-4 rounded-2xl shadow-gold hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-3 mt-4">
+                                <i class="fa-solid fa-qrcode text-xl"></i>
+                                <span>تأكيد التسجيل وإصدار كود QR</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Generated VIP Ticket & QR Code Container (Shown after registration) -->
+                    <div id="ticket-result-container" class="hidden max-w-lg mx-auto">
+                        <div class="bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 px-4 py-3 rounded-2xl text-center text-sm font-bold mb-4 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-check text-lg"></i>
+                            <span>تم تسجيلك بنجاح في الإفطار الرمضاني 2027! احتفظ ببطاقة الدعوة أدناه.</span>
+                        </div>
+
+                        <!-- Email Dispatch Status Banner -->
+                        <div id="email-status-banner" class="bg-blue-500/15 border border-blue-500/30 text-blue-200 px-4 py-3 rounded-2xl text-xs sm:text-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 no-print">
+                            <div class="flex items-center gap-2.5">
+                                <i id="email-status-icon" class="fa-solid fa-spinner fa-spin text-gold-400 text-base"></i>
+                                <span id="email-status-text">جاري إرسال بيانات التسجيل تلقائياً إلى بريد الإدارة (30han20@gmail.com)...</span>
+                            </div>
+                            <a id="manual-mailto-btn" href="#" class="shrink-0 px-3 py-1.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-gold-400 border border-gold-500/30 font-bold text-xs transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>إرسال نسخة يدوية بالبريد</span>
+                            </a>
+                        </div>
+
+                        <!-- Printable VIP Ticket Card -->
+                        <div id="printable-ticket-area" class="bg-navy-950 border-2 border-gold-500/60 rounded-3xl overflow-hidden shadow-2xl">
+                            <!-- Ticket Header -->
+                            <div class="gold-gradient-bg px-6 py-4 text-navy-950 flex items-center justify-between">
+                                <div>
+                                    <span class="block text-xs font-extrabold uppercase tracking-wider">دعوة حضور رسمية • VIP</span>
+                                    <h3 class="text-lg font-black">الإفطار الرمضاني لعام 2027</h3>
+                                </div>
+                                <div class="text-left">
+                                    <span id="ticket-serial-badge" class="block text-xs font-black bg-navy-950 text-gold-400 px-2.5 py-1 rounded-lg tracking-wider" dir="ltr">AET-2027-0001</span>
+                                </div>
+                            </div>
+
+                            <!-- Sponsors Strip -->
+                            <div class="bg-navy-900 px-6 py-2.5 border-b border-white/10 flex items-center justify-between text-xs">
+                                <span class="text-slate-300 font-bold">مدرسة الدهانات والديكورات الحديثة</span>
+                                <span class="text-gold-400 font-extrabold">GLC Paints • MP Define</span>
+                            </div>
+
+                            <!-- Ticket Body & QR Code -->
+                            <div class="p-6 text-center">
+                                <!-- High-Resolution QR Code Canvas Container -->
+                                <div class="inline-block p-3.5 bg-white rounded-2xl shadow-lg mb-4 border-4 border-gold-500/30">
+                                    <canvas id="qrcode-canvas" width="240" height="240"></canvas>
+                                </div>
+                                <p class="text-xs text-slate-300 font-semibold mb-5">امسح رمز الاستجابة السريعة (QR) عند البوابة للتحقق الفوري من بيانات الحضور</p>
+
+                                <!-- Attendee Details -->
+                                <div class="bg-navy-900/90 border border-white/10 rounded-2xl p-4 text-right space-y-2.5 text-sm">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                        <span class="text-slate-400 text-xs">رقم التذكرة:</span>
+                                        <span id="ticket-serial-text" class="font-black text-emerald-400 tracking-wider" dir="ltr"></span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                        <span class="text-slate-400 text-xs">الاسم الرباعي:</span>
+                                        <span id="ticket-name" class="font-bold text-white"></span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                        <span class="text-slate-400 text-xs">الرقم القومي:</span>
+                                        <span id="ticket-nid" class="font-bold text-gold-400 tracking-wider" dir="ltr"></span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                                        <span class="text-slate-400 text-xs">رقم الهاتف:</span>
+                                        <span id="ticket-phone" class="font-bold text-white tracking-wider" dir="ltr"></span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400 text-xs">البريد الإلكتروني:</span>
+                                        <span id="ticket-email" class="font-semibold text-slate-300 text-xs" dir="ltr"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons for Ticket -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 no-print">
+                            <button onclick="downloadQRCode()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download"></i>
+                                <span>تحميل QR صورة</span>
+                            </button>
+                            <button onclick="window.print()" class="bg-navy-800 hover:bg-navy-700 text-white border border-white/15 font-bold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-print"></i>
+                                <span>طباعة الدعوة</span>
+                            </button>
+                            <button onclick="resetIftarForm()" class="bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-500/40 font-bold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <span>تسجيل آخر</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Admin Dashboard Modal (Registrants Sheet + Excel CSV Export + Email All) -->
+    <div id="admin-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-navy-900 border border-gold-500/40 rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+            <!-- Close Button -->
+            <button onclick="closeAdminModal()" class="absolute top-5 left-5 w-10 h-10 rounded-xl bg-navy-800 hover:bg-rose-500/20 hover:text-rose-400 text-slate-300 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Step 1: Admin Passcode Login -->
+            <div id="admin-login-view" class="max-w-md mx-auto text-center py-6">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl gold-gradient-bg text-navy-950 flex items-center justify-center text-2xl shadow-gold">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white mb-2">لوحة كشف المسجلين (الإدارة)</h3>
+                <p class="text-slate-400 text-sm font-tajawal mb-6">
+                    أدخل رمز مرور الإدارة لعرض جدول المسجلين في الإفطار الرمضاني 2027 وتصدير كشف Excel أو إرساله إلى البريد الإلكتروني.
+                </p>
+
+                <div class="mb-4 text-right">
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">رمز مرور الإدارة (الرمز الافتراضي: <span class="text-gold-400 font-black">2027</span>)</label>
+                    <input type="password" id="admin-passcode-input" onkeyup="if(event.key==='Enter') verifyAdminPasscode()" placeholder="أدخل رمز المرور (2027)" class="w-full bg-navy-950 border border-white/15 rounded-xl px-4 py-3 text-white text-center font-bold tracking-widest focus:outline-none focus:border-gold-400">
+                    <p id="admin-login-error" class="hidden text-xs text-rose-400 mt-1.5 font-bold text-center">رمز المرور غير صحيح! الرمز الافتراضي هو 2027</p>
+                </div>
+
+                <button onclick="verifyAdminPasscode()" class="w-full gold-gradient-bg text-navy-950 font-black py-3.5 rounded-xl shadow-gold hover:brightness-110 transition-all">
+                    فتح كشف المسجلين
+                </button>
+            </div>
+
+            <!-- Step 2: Admin Data Table & Export Controls -->
+            <div id="admin-dashboard-view" class="hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+                    <div>
+                        <span class="text-xs font-bold text-gold-400">إدارة مدرسة الدهانات والديكورات الحديثة</span>
+                        <h3 class="text-xl sm:text-2xl font-black text-white mt-1">كشف المسجلين في الإفطار الرمضاني 2027</h3>
+                        <p class="text-xs text-slate-400 mt-1">
+                            البريد المستلم للإشعارات: <span class="text-emerald-400 font-bold" dir="ltr">30han20@gmail.com</span> • إجمالي المسجلين: <span id="admin-total-count" class="text-gold-400 font-black text-sm">0</span>
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <button onclick="exportRegistrantsToCSV()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-file-excel"></i>
+                            <span>تصدير كشف Excel (CSV)</span>
+                        </button>
+
+                        <button onclick="emailFullSheetToAdmin()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                            <span>إرسال الكشف بالكامل إلى 30han20@gmail.com</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notice about FormSubmit activation -->
+                <div class="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-3.5 text-xs text-amber-200 flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-info text-amber-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong>تنبيه هام للإدارة:</strong> عند وصول أول رسالة تسجيل على بريدك <span class="underline font-bold" dir="ltr">30han20@gmail.com</span> من خدمة FormSubmit، يرجى الضغط على زر <strong>Activate Form</strong> داخل الرسالة لتفعيل استقبال جميع التسجيلات تلقائياً في المستقبل.
+                    </div>
+                </div>
+
+                <!-- Search Bar inside Admin Table -->
+                <div class="my-4 relative">
+                    <input type="text" id="admin-search-input" onkeyup="renderAdminTable()" placeholder="ابحث في الكشف بالاسم الرباعي أو الرقم القومي أو رقم الهاتف أو رقم التذكرة..." class="w-full bg-navy-950 border border-white/15 rounded-xl pr-10 pl-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-gold-400">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+
+                <!-- Responsive Data Table -->
+                <div class="overflow-x-auto rounded-2xl border border-white/10 bg-navy-950/70 max-h-96">
+                    <table class="w-full text-right border-collapse text-xs sm:text-sm">
+                        <thead class="bg-navy-800 text-gold-400 font-bold sticky top-0">
+                            <tr>
+                                <th class="p-3.5 border-b border-white/10">م</th>
+                                <th class="p-3.5 border-b border-white/10">رقم التذكرة</th>
+                                <th class="p-3.5 border-b border-white/10">الاسم الرباعي</th>
+                                <th class="p-3.5 border-b border-white/10">الرقم القومي</th>
+                                <th class="p-3.5 border-b border-white/10">رقم الهاتف</th>
+                                <th class="p-3.5 border-b border-white/10">البريد الإلكتروني</th>
+                                <th class="p-3.5 border-b border-white/10">تاريخ التسجيل</th>
+                                <th class="p-3.5 border-b border-white/10 text-center">إجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-white/10 text-slate-200">
+                            <!-- Rows dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 border-t border-white/10 pt-14 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+                <!-- Col 1: School Info -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-navy-950">
+                            <i class="fa-solid fa-paint-roller text-lg"></i>
+                        </div>
+                        <span class="text-lg font-extrabold text-white">مدرسة الدهانات والديكورات الحديثة</span>
+                    </div>
+                    <p class="text-slate-400 text-sm font-tajawal leading-relaxed">
+                        منصة تعليمية ومهنية رائدة تجمع نخبة خبراء وفنيي الدهانات والديكورات الحديثة لتبادل الخبرات والارتقاء بجودة التشطيبات في مصر.
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-base mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#home" class="hover:text-gold-400 transition-colors">الرئيسية</a></li>
+                        <li><a href="#encyclopedia" class="hover:text-gold-400 transition-colors">موسوعة الدهانات والديكورات</a></li>
+                        <li><a href="#calculator" class="hover:text-gold-400 transition-colors">حاسبة الدهانات ومحاكي الألوان</a></li>
+                        <li><a href="#management" class="hover:text-gold-400 transition-colors">قائمة أعضاء إدارة المدرسة (45)</a></li>
+                        <li><a href="#iftar-section" class="text-gold-400 font-bold hover:underline">التسجيل في الإفطار الرمضاني 2027</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Official Sponsors -->
+                <div>
+                    <h4 class="text-white font-bold text-base mb-4">الشركاء والرعاة الرسميون</h4>
+                    <div class="space-y-3">
+                        <div class="p-3.5 rounded-2xl bg-navy-900 border border-white/10 flex items-center justify-between">
+                            <div>
+                                <span class="block text-[11px] text-slate-400">الراعي الرسمي</span>
+                                <span class="font-extrabold text-white text-base">شركة GLC Paints</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-glc-red/20 text-glc-red font-black text-xs">GLC</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-navy-900 border border-gold-500/25 flex items-center justify-between">
+                            <div>
+                                <span class="block text-[11px] text-slate-400">الوكيل الإعلاني</span>
+                                <span class="font-extrabold text-gold-400 text-base">شركة MP Define</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-gold-500/20 text-gold-400 font-black text-xs">MP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© 2026 - 2027 جميع الحقوق محفوظة لـ <span class="text-slate-300 font-bold">مدرسة الدهانات والديكورات الحديثة</span>.</p>
+                <p>برعاية <span class="text-white font-bold">GLC Paints</span> | الوكيل الإعلاني <span class="text-gold-400 font-bold">MP Define</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Logic -->
+    <script>
+        // 1. Exact List of all 45 School Management Members
+        const managementMembers = [
+            "ابو علي",
+            "محمد المعداوي",
+            "محمد مسعد ابو فياض",
+            "مصطفى الخطيب",
+            "ابو عمر",
+            "كابو السياف",
+            "مصطفي سعيد",
+            "Ayman Abdelwahab",
+            "سامى عبدالتواب",
+            "كريم كيشو",
+            "Essam Abdo",
+            "محمد آل دليم",
+            "عبدالله مطاوع",
+            "محمد الجندى",
+            "عمر محمد",
+            "اشرف اسبونش",
+            "حماده السراميجى",
+            "أحمد البطوط",
+            "Ahm ED",
+            "اشرف خلف",
+            "غريب محمد",
+            "محمد رومى",
+            "وليد ضاحى",
+            "حماده حنفي",
+            "هاني عزت",
+            "احمد ابوياسين",
+            "مصطفي احمد حسن",
+            "مؤمن عبد النعيم",
+            "Ahmed Ragab",
+            "Yasser Alteraawi",
+            "هشام الصعيدي",
+            "هشام ابوعدنان",
+            "Hares El Bauomy",
+            "محمد الجبلاوى ابوانس",
+            "تامر عفيفى",
+            "محمود الحلواني",
+            "محمد فتحي",
+            "Zaher Hamadah",
+            "رفيق عبدالنور",
+            "مصطفى محمد صلاح",
+            "كامل البيجى",
+            "بدر رجب",
+            "حسن نشأت",
+            "أيمن جابر",
+            "Hamed Elbaz"
+        ];
+
+        // Render Management Cards
+        function renderManagement(list) {
+            const grid = document.getElementById('management-grid');
+            const emptyState = document.getElementById('no-management-results');
+            grid.innerHTML = '';
+
+            if (list.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            list.forEach((member) => {
+                // Find original index (1 to 45)
+                const originalIndex = managementMembers.indexOf(member) + 1;
+                const isEnglish = /^[A-Za-z\s]+$/.test(member);
+
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl p-4 hover:border-gold-500/40 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5 group';
+                card.innerHTML = `
+                    <div class="w-10 h-10 shrink-0 rounded-xl bg-navy-800 border border-gold-500/30 text-gold-400 font-black text-xs flex items-center justify-center group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                        ${originalIndex}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <h3 class="font-bold text-white text-sm sm:text-base truncate" dir="${isEnglish ? 'ltr' : 'rtl'}">${member}</h3>
+                        <span class="block text-[11px] text-slate-400 mt-0.5">إدارة المدرسة</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Instant Search Filter for Management
+        function filterManagement() {
+            const query = document.getElementById('management-search').value.trim().toLowerCase();
+            const filtered = managementMembers.filter(name => name.toLowerCase().includes(query));
+            renderManagement(filtered);
+        }
+
+        // 2. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 3. Encyclopedia Tabs Logic
+        function switchTab(tabName) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Reset all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('gold-gradient-bg', 'text-navy-950', 'shadow-gold');
+                btn.classList.add('glass-card', 'text-slate-300');
+            });
+
+            // Show selected content
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            // Highlight active button
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.remove('glass-card', 'text-slate-300');
+            activeBtn.classList.add('gold-gradient-bg', 'text-navy-950', 'shadow-gold');
+        }
+
+        // 4. Paint Calculator Logic
+        function calculatePaint() {
+            const area = parseFloat(document.getElementById('calc-area').value) || 0;
+            const coverage = parseFloat(document.getElementById('calc-type').value) || 10;
+
+            if (area <= 0) {
+                document.getElementById('calc-result-liters').textContent = '0 لتر';
+                document.getElementById('calc-result-buckets').textContent = 'أدخل مساحة صحيحة';
+                return;
+            }
+
+            // Two coats calculation
+            const litersNeeded = Math.ceil((area * 2) / coverage);
+            const buckets10L = Math.floor(litersNeeded / 10);
+            const remainingLiters = litersNeeded % 10;
+            const gallons3L = Math.ceil(remainingLiters / 3);
+
+            document.getElementById('calc-result-liters').textContent = `${litersNeeded} لتر`;
+
+            let packagingText = [];
+            if (buckets10L > 0) packagingText.push(`${buckets10L} بستلة (10 لتر)`);
+            if (gallons3L > 0) packagingText.push(`${gallons3L} جالون (3 لتر)`);
+            
+            document.getElementById('calc-result-buckets').textContent = packagingText.join(' + ') || '1 جالون صغير';
+        }
+
+        // 5. Color Swatch Previewer Logic
+        function selectSwatch(hex, name, code) {
+            const wall = document.getElementById('wall-preview');
+            wall.style.backgroundColor = hex;
+            
+            // Determine text contrast (light text for dark backgrounds)
+            const darkHexes = ['#1E3A5F', '#383C42', '#6B7B6E', '#B86B52'];
+            wall.style.color = darkHexes.includes(hex) ? '#FFFFFF' : '#161F33';
+
+            document.getElementById('swatch-name').textContent = name;
+            document.getElementById('swatch-code').textContent = `كود اللون: ${code}`;
+        }
+
+        // 6. Scroll smoothly to Iftar Registration Section
+        function openIftarModal() {
+            const section = document.getElementById('iftar-section');
+            section.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                const nameInput = document.getElementById('fullName');
+                if (nameInput && !document.getElementById('inline-form-container').classList.contains('hidden')) {
+                    nameInput.focus();
+                }
+            }, 600);
+        }
+
+        // 7. Ramadan Iftar 2027 Form Validation & Real QR Generation
+        const ADMIN_EMAIL = "30han20@gmail.com";
+        const STORAGE_KEY = "modern_paints_iftar_2027_registrants";
+
+        function getRegistrants() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveRegistrant(record) {
+            try {
+                const list = getRegistrants();
+                list.push(record);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            } catch (e) {
+                console.error("Storage error:", e);
+            }
+        }
+
+        function showFieldError(fieldId, message) {
+            const errEl = document.getElementById(`error-${fieldId}`);
+            const inputEl = document.getElementById(fieldId);
+            if (message) {
+                errEl.textContent = message;
+                errEl.classList.remove('hidden');
+                inputEl.classList.add('border-rose-500');
+            } else {
+                errEl.classList.add('hidden');
+                inputEl.classList.remove('border-rose-500');
+            }
+        }
+
+        function generateHighResQR(qrText) {
+            const canvas = document.getElementById('qrcode-canvas');
+            // Encode UTF-8 string safely so Arabic characters scan accurately on all mobile QR readers
+            const utf8EncodedText = unescape(encodeURIComponent(qrText));
+
+            if (typeof QRious !== 'undefined') {
+                new QRious({
+                    element: canvas,
+                    value: utf8EncodedText,
+                    size: 300,
+                    level: 'M',
+                    background: '#FFFFFF',
+                    foreground: '#070B14',
+                    padding: 12
+                });
+            } else {
+                // Fallback visual indicator if CDN fails offline
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#070B14';
+                ctx.font = 'bold 14px Cairo, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('يرجى التحقق من اتصال الإنترنت', canvas.width / 2, canvas.height / 2);
+            }
+        }
+
+        async function sendRegistrationEmail(record) {
+            const statusIcon = document.getElementById('email-status-icon');
+            const statusText = document.getElementById('email-status-text');
+            const mailtoBtn = document.getElementById('manual-mailto-btn');
+
+            // Prepare manual mailto link as reliable backup
+            const subject = encodeURIComponent(`تسجيل جديد - الإفطار الرمضاني 2027 (${record.fullName})`);
+            const body = encodeURIComponent(
+                `بيانات مسجل جديد في الإفطار الرمضاني لعام 2027\n` +
+                `مدرسة الدهانات والديكورات الحديثة (برعاية GLC Paints - الوكيل MP Define)\n` +
+                `----------------------------------------\n` +
+                `رقم التذكرة: ${record.ticketId}\n` +
+                `الاسم الرباعي: ${record.fullName}\n` +
+                `الرقم القومي: ${record.nationalId}\n` +
+                `رقم الهاتف: ${record.phone}\n` +
+                `البريد الإلكتروني: ${record.email}\n` +
+                `تاريخ ووقت التسجيل: ${record.registeredAt}\n`
+            );
+            mailtoBtn.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
+
+            // Send silently via FormSubmit AJAX API to 30han20@gmail.com
+            try {
+                statusIcon.className = "fa-solid fa-spinner fa-spin text-gold-400 text-base";
+                statusText.textContent = `جاري إرسال البيانات تلقائياً إلى (${ADMIN_EMAIL})...`;
+
+                const response = await fetch(`https://formsubmit.co/ajax/${ADMIN_EMAIL}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        _subject: `تسجيل إفطار رمضان 2027 - ${record.fullName} (${record.ticketId})`,
+                        _template: "table",
+                        _captcha: "false",
+                        "رقم_التذكرة": record.ticketId,
+                        "الاسم_الرباعي": record.fullName,
+                        "الرقم_القومي": record.nationalId,
+                        "رقم_الهاتف": record.phone,
+                        "البريد_الإلكتروني": record.email,
+                        "تاريخ_التسجيل": record.registeredAt,
+                        "الجهة": "مدرسة الدهانات والديكورات الحديثة - GLC Paints & MP Define"
+                    })
+                });
+
+                if (response.ok) {
+                    statusIcon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
+                    statusText.textContent = `تم إرسال نسخة من بياناتك بنجاح إلى بريد الإدارة (${ADMIN_EMAIL}).`;
+                } else {
+                    throw new Error("FormSubmit response not OK");
+                }
+            } catch (error) {
+                statusIcon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-base";
+                statusText.textContent = `تم حفظ بياناتك في كشف الإدارة. يمكنك أيضاً إرسال نسخة بالضغط على زر البريد:`;
+            }
+        }
+
+        function handleIftarSubmit(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const nationalId = document.getElementById('nationalId').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            let isValid = true;
+
+            // Validate Quadruple Name (at least 4 parts)
+            const nameParts = fullName.split(/\s+/).filter(Boolean);
+            if (nameParts.length < 4) {
+                showFieldError('fullName', 'يرجى إدخال الاسم الرباعي كاملاً (4 أسماء على الأقل).');
+                isValid = false;
+            } else {
+                showFieldError('fullName', '');
+            }
+
+            // Validate Egyptian National ID (14 digits)
+            if (!/^\d{14}$/.test(nationalId)) {
+                showFieldError('nationalId', 'الرقم القومي يجب أن يتكون من 14 رقماً صحيحاً.');
+                isValid = false;
+            } else {
+                showFieldError('nationalId', '');
+            }
+
+            // Validate Egyptian Phone Number (11 digits starting with 010, 011, 012, 015)
+            if (!/^01[0125]\d{8}$/.test(phone)) {
+                showFieldError('phone', 'يرجى إدخال رقم هاتف مصري صحيح مكون من 11 رقماً (يبدأ بـ 010/011/012/015).');
+                isValid = false;
+            } else {
+                showFieldError('phone', '');
+            }
+
+            // Validate Email Address
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showFieldError('email', 'يرجى إدخال بريد إلكتروني صحيح.');
+                isValid = false;
+            } else {
+                showFieldError('email', '');
+            }
+
+            if (!isValid) return;
+
+            // Generate Serial Ticket Number (e.g., AET-2027-0001)
+            const existingList = getRegistrants();
+            const serialNumber = String(existingList.length + 1).padStart(4, '0');
+            const randomSuffix = Math.floor(10 + Math.random() * 90);
+            const ticketId = `AET-2027-${serialNumber}-${randomSuffix}`;
+            const registeredAt = new Date().toLocaleString('ar-EG', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const record = {
+                ticketId,
+                fullName,
+                nationalId,
+                phone,
+                email,
+                registeredAt
+            };
+
+            // Save to local storage for Admin Sheet & CSV Export
+            saveRegistrant(record);
+
+            // Populate Ticket Info
+            document.getElementById('ticket-serial-badge').textContent = ticketId;
+            document.getElementById('ticket-serial-text').textContent = ticketId;
+            document.getElementById('ticket-name').textContent = fullName;
+            document.getElementById('ticket-nid').textContent = nationalId;
+            document.getElementById('ticket-phone').textContent = phone;
+            document.getElementById('ticket-email').textContent = email;
+
+            // Build structured QR Code payload with Arabic details
+            const qrPayload = [
+                "مدرسة الدهانات والديكورات الحديثة",
+                "الإفطار الرمضاني 2027",
+                `رقم التذكرة: ${ticketId}`,
+                `الاسم: ${fullName}`,
+                `الرقم القومي: ${nationalId}`,
+                `الهاتف: ${phone}`
+            ].join("\n");
+
+            // Render high-res QR Code directly on Canvas
+            generateHighResQR(qrPayload);
+
+            // Switch views
+            document.getElementById('inline-form-container').classList.add('hidden');
+            document.getElementById('ticket-result-container').classList.remove('hidden');
+
+            // Dispatch email notification to 30han20@gmail.com
+            sendRegistrationEmail(record);
+        }
+
+        // Download QR Code Canvas directly as PNG Image
+        function downloadQRCode() {
+            const canvas = document.getElementById('qrcode-canvas');
+            const fullName = document.getElementById('ticket-name').textContent || 'دعوة_افطار_2027';
+
+            if (canvas) {
+                const dataUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = `QR_افطار_2027_${fullName.replace(/\s+/g, '_')}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // Reset Form to Register Another Person
+        function resetIftarForm() {
+            document.getElementById('iftar-form').reset();
+            document.getElementById('ticket-result-container').classList.add('hidden');
+            document.getElementById('inline-form-container').classList.remove('hidden');
+        }
+
+        // 8. Admin Dashboard Modal & Excel (CSV) Export Logic
+        let isAdminAuthenticated = false;
+
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            if (isAdminAuthenticated) {
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminTable();
+            } else {
+                document.getElementById('admin-login-view').classList.remove('hidden');
+                document.getElementById('admin-dashboard-view').classList.add('hidden');
+                document.getElementById('admin-passcode-input').value = '';
+                document.getElementById('admin-login-error').classList.add('hidden');
+            }
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function verifyAdminPasscode() {
+            const pass = document.getElementById('admin-passcode-input').value.trim();
+            if (pass === '2027') {
+                isAdminAuthenticated = true;
+                document.getElementById('admin-login-error').classList.add('hidden');
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminTable();
+            } else {
+                document.getElementById('admin-login-error').classList.remove('hidden');
+            }
+        }
+
+        function renderAdminTable() {
+            const list = getRegistrants();
+            const query = (document.getElementById('admin-search-input')?.value || '').trim().toLowerCase();
+            const tbody = document.getElementById('admin-table-body');
+            const totalBadge = document.getElementById('admin-total-count');
+
+            totalBadge.textContent = list.length;
+            tbody.innerHTML = '';
+
+            const filtered = list.filter(item =>
+                item.fullName.toLowerCase().includes(query) ||
+                item.nationalId.includes(query) ||
+                item.phone.includes(query) ||
+                item.ticketId.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="p-8 text-center text-slate-400">
+                            <i class="fa-solid fa-folder-open text-3xl mb-2 block text-slate-600"></i>
+                            لا توجد بيانات مسجلة حتى الآن.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filtered.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-navy-800/60 transition-colors';
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-slate-400">${idx + 1}</td>
+                    <td class="p-3.5 font-black text-emerald-400 whitespace-nowrap" dir="ltr">${item.ticketId}</td>
+                    <td class="p-3.5 font-bold text-white whitespace-nowrap">${item.fullName}</td>
+                    <td class="p-3.5 font-semibold text-gold-400 whitespace-nowrap" dir="ltr">${item.nationalId}</td>
+                    <td class="p-3.5 text-slate-200 whitespace-nowrap" dir="ltr">${item.phone}</td>
+                    <td class="p-3.5 text-slate-300 text-xs" dir="ltr">${item.email}</td>
+                    <td class="p-3.5 text-slate-400 text-xs whitespace-nowrap">${item.registeredAt}</td>
+                    <td class="p-3.5 text-center">
+                        <button onclick="viewTicketFromAdmin('${item.ticketId}')" class="px-2.5 py-1 rounded-lg bg-gold-500/20 text-gold-300 hover:bg-gold-500 hover:text-navy-950 font-bold text-xs transition-colors">
+                            عرض QR
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function viewTicketFromAdmin(ticketId) {
+            const list = getRegistrants();
+            const record = list.find(r => r.ticketId === ticketId);
+            if (!record) return;
+
+            closeAdminModal();
+
+            document.getElementById('ticket-serial-badge').textContent = record.ticketId;
+            document.getElementById('ticket-serial-text').textContent = record.ticketId;
+            document.getElementById('ticket-name').textContent = record.fullName;
+            document.getElementById('ticket-nid').textContent = record.nationalId;
+            document.getElementById('ticket-phone').textContent = record.phone;
+            document.getElementById('ticket-email').textContent = record.email;
+
+            const qrPayload = [
+                "مدرسة الدهانات والديكورات الحديثة",
+                "الإفطار الرمضاني 2027",
+                `رقم التذكرة: ${record.ticketId}`,
+                `الاسم: ${record.fullName}`,
+                `الرقم القومي: ${record.nationalId}`,
+                `الهاتف: ${record.phone}`
+            ].join("\n");
+
+            generateHighResQR(qrPayload);
+
+            document.getElementById('inline-form-container').classList.add('hidden');
+            document.getElementById('ticket-result-container').classList.remove('hidden');
+            document.getElementById('iftar-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Export Registrants Sheet as UTF-8 BOM CSV (Opens cleanly in Microsoft Excel with Arabic)
+        function exportRegistrantsToCSV() {
+            const list = getRegistrants();
+            if (list.length === 0) {
+                return;
+            }
+
+            const headers = ["م", "رقم التذكرة", "الاسم الرباعي", "الرقم القومي", "رقم الهاتف", "البريد الإلكتروني", "تاريخ التسجيل"];
+            const rows = list.map((item, index) => [
+                index + 1,
+                `"${item.ticketId}"`,
+                `"${item.fullName.replace(/"/g, '""')}"`,
+                `"\t${item.nationalId}"`, // Tab prefix prevents Excel from converting 14-digit National ID to scientific notation
+                `"\t${item.phone}"`,      // Preserves leading zero in phone numbers
+                `"${item.email}"`,
+                `"${item.registeredAt}"`
+            ]);
+
+            const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `كشف_المسجلين_افطار_رمضان_2027.csv`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // Send Entire Registrants Table to 30han20@gmail.com
+        function emailFullSheetToAdmin() {
+            const list = getRegistrants();
+            const subject = encodeURIComponent(`كشف المسجلين الكامل - الإفطار الرمضاني 2027 (${list.length} مسجل)`);
+
+            let lines = [
+                "كشف المسجلين في الإفطار الرمضاني لعام 2027",
+                "مدرسة الدهانات والديكورات الحديثة (GLC Paints & MP Define)",
+                `إجمالي المسجلين: ${list.length}`,
+                "=========================================="
+            ];
+
+            if (list.length === 0) {
+                lines.push("لا توجد بيانات مسجلة حتى الآن.");
+            } else {
+                list.forEach((item, idx) => {
+                    lines.push(
+                        `${idx + 1}) ${item.fullName}\n` +
+                        `   رقم التذكرة: ${item.ticketId} | الرقم القومي: ${item.nationalId} | الهاتف: ${item.phone} | البريد: ${item.email}`
+                    );
+                });
+            }
+
+            const body = encodeURIComponent(lines.join("\n"));
+            window.location.href = `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
+        }
+
+        // Initialize on Page Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderManagement(managementMembers);
+            calculatePaint();
+        });
+    </script>
+</body>
+</html>
